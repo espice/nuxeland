@@ -16,6 +16,7 @@
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
+    "axios": "^1.6.0",
     "eslint": "^8.47.0",
     "eslint-config-next": "13.4.19",
     "graphql": "^16.8.0",
@@ -28,6 +29,8 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@genql/cli": "^6.2.1",
+    "chokidar": "^3.5.3",
     "concurrently": "^8.2.2"
   }
 }

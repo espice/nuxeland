@@ -56,7 +56,7 @@ const main = async () => {
   });
 
   const host = "0.0.0.0";
-  const port = parseInt(env("PORT", "8080"));
+  const port = parseInt(env("PORT", "8000"));
 
   try {
     await app.listen({ port, host });
