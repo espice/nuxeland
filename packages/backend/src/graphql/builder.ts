@@ -1,8 +1,8 @@
 import SchemaBuilder from "@pothos/core";
 import ScopeAuthPlugin from "@pothos/plugin-scope-auth";
 import { GraphQLError } from "graphql";
-import { PrismaPlugin } from "@cw23/database";
-import type { PothosPrismaTypes } from "@cw23/database";
+import { PrismaPlugin } from "@nuxeland/database";
+import type { PothosPrismaTypes } from "@nuxeland/database";
 import { prisma } from "../client/prisma";
 import { GraphQLContext } from "./context";
 

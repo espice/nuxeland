@@ -1,6 +1,14 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// POSTGRES_URL="postgres://default:arRtx89UIdjw@ep-solitary-dew-72293024-pooler.eu-central-1.postgres.vercel-storage.com:5432/verceldb"
+// POSTGRES_PRISMA_URL="postgres://default:arRtx89UIdjw@ep-solitary-dew-72293024-pooler.eu-central-1.postgres.vercel-storage.com:5432/verceldb?pgbouncer=true&connect_timeout=15"
+// POSTGRES_URL_NON_POOLING="postgres://default:arRtx89UIdjw@ep-solitary-dew-72293024.eu-central-1.postgres.vercel-storage.com:5432/verceldb"
+// POSTGRES_USER="default"
+// POSTGRES_HOST="ep-solitary-dew-72293024-pooler.eu-central-1.postgres.vercel-storage.com"
+// POSTGRES_PASSWORD="arRtx89UIdjw"
+// POSTGRES_DATABASE="verceldb"
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,7 +19,8 @@ generator pothos {
 
 datasource db {
   provider     = "postgresql"
-  url          = env("DATABASE_URL")
+  url          = "postgres://default:arRtx89UIdjw@ep-solitary-dew-72293024-pooler.eu-central-1.postgres.vercel-storage.com:5432/verceldb?pgbouncer=true&connect_timeout=15&schema=public"
+  directUrl    = "postgres://default:arRtx89UIdjw@ep-solitary-dew-72293024.eu-central-1.postgres.vercel-storage.com:5432/verceldb"
   relationMode = "prisma"
 }
 
