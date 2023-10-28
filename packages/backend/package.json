@@ -1,0 +1,36 @@
+{
+  "name": "@cw23/backend",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "tsc -w & node --watch --watch-preserve-output dist",
+    "start": "node dist/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@cw23/database": "workspace:*",
+    "@fastify/cookie": "^9.0.4",
+    "@fastify/cors": "^8.3.0",
+    "@pothos/core": "^3.33.0",
+    "@pothos/plugin-scope-auth": "^3.20.0",
+    "@react-email/components": "^0.0.7",
+    "@react-email/tailwind": "0.0.8",
+    "dotenv": "^16.3.1",
+    "fast-jwt": "^3.2.0",
+    "fastify": "^4.21.0",
+    "fastify-type-provider-zod": "^1.1.9",
+    "graphql": "^16.8.0",
+    "graphql-yoga": "^4.0.4",
+    "react": "18.2.0",
+    "resend": "^1.0.0",
+    "ulid": "^2.3.0",
+    "zod": "^3.22.2"
+  },
+  "devDependencies": {
+    "@cw23/config": "workspace:*",
+    "@types/node": "20.5.3",
+    "@types/react": "18.2.21",
+    "typescript": "5.1.6"
+  }
+}

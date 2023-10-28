@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@cw23/config/tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "outDir": "dist"
+  },
+  "watchOptions": {
+    "excludeDirectories": ["dist", ".turbo"],
+    "fallbackPolling": "dynamicpriority"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

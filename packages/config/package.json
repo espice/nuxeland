@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json.schemastore.org/package",
+  "name": "@cw23/config",
+  "version": "0.0.0",
+  "private": true
+}
