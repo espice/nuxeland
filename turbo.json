@@ -2,15 +2,15 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
-    "@cw23/database#prisma:generate": {
+    "@nuxeland/database#prisma:generate": {
       "inputs": ["prisma/**"],
       "outputs": ["dist/**"]
     },
-    "@cw23/backend#build": {
-      "dependsOn": ["@cw23/database#prisma:generate"]
+    "@nuxeland/backend#build": {
+      "dependsOn": ["@nuxeland/database#prisma:generate"]
     },
-    "@cw23/web#build": {
-      "dependsOn": ["@cw23/backend#build"],
+    "@nuxeland/web#build": {
+      "dependsOn": ["@nuxeland/backend#build"],
       "outputs": [".next"]
     },
     "build": {

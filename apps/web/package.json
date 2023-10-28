@@ -1,26 +1,33 @@
 {
-  "name": "@cw23/web",
+  "name": "@nuxeland/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "pnpm codegen --dev & next dev -p 5000",
+    "build": "pnpm codegen && next build",
+    "start": "next start -p 5000",
+    "lint": "next lint",
+    "codegen": "node codegen",
+    "dev:windows": "concurrently \"pnpm codegen --dev\" \"next dev -p 5000\""
   },
   "dependencies": {
+    "@nuxeland/config": "workspace:*",
     "@types/node": "20.5.3",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
-    "@cw23/config": "workspace:*",
     "autoprefixer": "10.4.15",
     "eslint": "^8.47.0",
     "eslint-config-next": "13.4.19",
+    "graphql": "^16.8.0",
+    "graphql-request": "^6.1.0",
     "next": "13.4.19",
     "postcss": "8.4.28",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
