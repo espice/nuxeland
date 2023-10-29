@@ -27,3 +27,12 @@ body {
   -ms-touch-action: manipulation;
   touch-action: manipulation;
 }
+
+.react-select__menu-list {
+  :nth-child(1) {
+    border-radius: 0px 0px 0px 0px !important;
+  }
+  * {
+    border-radius: 0px 0px 12px 12px;
+  }
+}

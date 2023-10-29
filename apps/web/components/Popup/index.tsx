@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 "use client";
 
@@ -11,9 +10,9 @@ import { useMediaQuery } from "react-responsive";
 import React, { useEffect, useCallback } from "react";
 import ClientOnlyPortal from "./ClientOnlyPortal";
 
-export default function useOnClickOutside(ref, handler) {
+export default function useOnClickOutside(ref: any, handler: Function) {
   const escapeListener = useCallback(
-    (e) => {
+    (e: any) => {
       if (e.key === "Escape") {
         handler(e);
       }
@@ -21,7 +20,7 @@ export default function useOnClickOutside(ref, handler) {
     [handler]
   );
   useEffect(() => {
-    const listener = (event) => {
+    const listener = (event: any) => {
       // Do nothing if clicking ref's element or descendent elements
       if (!ref.current || ref.current.contains(event.target)) {
         return;
@@ -42,7 +41,7 @@ export default function useOnClickOutside(ref, handler) {
   }, [ref, handler, escapeListener]);
 }
 
-const Popup = React.forwardRef((props, ref) => {
+const Popup = React.forwardRef((props: any, ref) => {
   const {
     children,
     heading,
@@ -52,7 +51,7 @@ const Popup = React.forwardRef((props, ref) => {
     center = false,
     ...others
   } = props;
-
+  console.log(popupState);
   const isPhone = useMediaQuery({ query: "(max-width: 460px)" });
 
   return (
