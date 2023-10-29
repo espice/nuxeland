@@ -15,7 +15,9 @@ export default function Dashboard() {
   return (
     <>
       <div className={PageStyles.main}>
-        <div className={PageStyles.main__title}>Hey Arnav!</div>
+        <div className={PageStyles.main__title}>
+          Hey Baljeet Singh the VIIth!
+        </div>
         <div className={PageStyles.main__section}>
           <div className={PageStyles.main__section__heading}>MAP</div>
         </div>

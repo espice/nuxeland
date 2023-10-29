@@ -19,4 +19,11 @@
     transform: scale(1.01);
     filter: brightness(0.8);
   }
+
+  &__focus {
+    transform: scale(
+      0.988
+    ); //yes i know it's not 0.99 but i like it i know maths
+    filter: brightness(0.8);
+  }
 }
