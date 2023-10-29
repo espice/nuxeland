@@ -21,7 +21,7 @@ const main = async () => {
   app.setSerializerCompiler(serializerCompiler);
 
   await app.register(cors, {
-    origin: env("CORS_ORIGIN", env("FRONTEND_URL")),
+    origin: [env("CORS_ORIGIN", env("FRONTEND_URL")), "http://127.0.0.1:5000"],
     methods: ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"],
     allowedHeaders: ["Origin", "Content-Type", "Accept"],
     credentials: true,
@@ -55,7 +55,7 @@ const main = async () => {
     },
   });
 
-  const host = "0.0.0.0";
+  const host = "127.0.0.1";
   const port = parseInt(env("PORT", "8000"));
 
   try {
