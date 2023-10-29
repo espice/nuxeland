@@ -4,13 +4,11 @@ import PageStyles from "@/styles/shared/page/index.module.scss";
 import { regions } from "@/utils/regions";
 import RegionCard from "./modules/RegionCard";
 import { useRef, useState } from "react";
-import { Popup, useOnClickOutside } from "@/components/Popup";
+import { Popup } from "@/components/Popup";
 
 export default function Dashboard() {
   const [regionPopupOpen, setRegionPopupOpen] = useState(true);
   const regionPopupRef = useRef(null);
-
-  useOnClickOutside(regionPopupRef, () => setRegionPopupOpen(false));
 
   return (
     <>

@@ -41,6 +41,7 @@ export default async function RootLayout({
       <ForceMobile>
         <body className={inter.className}>
           <AuthProvider user={user}>{children}</AuthProvider>
+          <div id={"popupContainer"}></div>
         </body>
       </ForceMobile>
     </html>

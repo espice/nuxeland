@@ -27,3 +27,80 @@
     filter: brightness(0.8);
   }
 }
+
+
+.popup {
+  &__heading {
+      font-size: 22px;
+      font-weight: bold;
+  }
+
+  &__desc {
+    font-weight: 600;
+    font-size: 17px;
+    margin-top: 5px;
+    color: #5B5B5B;
+    letter-spacing: -4.5%;
+    line-height: -30%;
+  }
+
+  &__stats {
+    display: flex;
+    margin-top: 18px;
+    gap: 60px;
+    &__stat {
+      display: flex;
+      flex-flow: column;
+      &__heading {
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: -4.5%;
+        color: #898989;
+      }
+      &__value {
+        color: #3f3f3f;
+        font-size: 18px;
+        font-weight: bold;
+        letter-spacing: -4.5%;
+      }
+    }
+  }
+  &__button {
+    display: flex;
+    position: relative;
+    height: 58px;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    border-radius: 8px;
+    font-size: 19px;
+    font-weight: bold;
+    letter-spacing: -4.5%;
+  }
+}
+
+.tips {
+  margin-top: 20px;
+  &__heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    &__heading {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    display: flex;
+  }
+
+  &__tips {
+    list-style-type: disc;
+    color: #3F3F3F;
+    margin-left: 6px;
+    font-weight: 500;
+    font-size: 17px;
+    margin-top:  12px;
+    list-style-position: inside;
+  }
+
+}
