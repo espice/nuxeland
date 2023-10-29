@@ -1,0 +1,32 @@
+.main {
+  background-color: #f6f6f6;
+  width: 100%;
+  padding: 26px 32px;
+
+  &__title {
+    letter-spacing: -2px;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--primary-purple);
+  }
+
+  &__section {
+    margin-top: 5px;
+    display: flex;
+    flex-flow: column;
+    gap: 5px;
+
+    &__heading {
+      font-size: 16px;
+      letter-spacing: -0.8px;
+      font-weight: 700;
+      color: var(--grey-400);
+    }
+
+    &__content {
+      display: flex;
+      flex-flow: column;
+      gap: 10px;
+    }
+  }
+}

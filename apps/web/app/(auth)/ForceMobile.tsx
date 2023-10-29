@@ -19,8 +19,8 @@ export default function ForceMobile({
     }
   }, []);
 
-  if (isMobile === null) return <>loading...</>;
-  if (!isMobile) return <>Please open this website on a Mobile Device</>;
+  if (isMobile === null) return <>{children}</>;
+  if (!isMobile) return <div>Please open this website on a Mobile Device</div>;
 
   return <>{children}</>;
 }
