@@ -22,9 +22,10 @@ async function getUser() {
         avatar: true,
       },
     });
-
+    console.log(me);
     return me;
   } catch (e) {
+    console.log(e);
     return null;
   }
 }
