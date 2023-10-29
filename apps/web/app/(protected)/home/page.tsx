@@ -5,10 +5,12 @@ import { regions } from "@/utils/regions";
 import RegionCard from "./modules/RegionCard";
 import { useRef, useState } from "react";
 import { Popup, useOnClickOutside } from "@/components/Popup";
+import { useUser } from "@/utils/hooks/useUser";
 
 export default function Dashboard() {
   const [regionPopupOpen, setRegionPopupOpen] = useState(true);
   const regionPopupRef = useRef(null);
+  const user = useUser();
 
   useOnClickOutside(regionPopupRef, () => setRegionPopupOpen(false));
 
@@ -16,7 +18,7 @@ export default function Dashboard() {
     <>
       <div className={PageStyles.main}>
         <div className={PageStyles.main__title}>
-          Hey Baljeet Singh the VIIth!
+          Hey {user?.name.split(" ")[0]}!
         </div>
         <div className={PageStyles.main__section}>
           <div className={PageStyles.main__section__heading}>MAP</div>
