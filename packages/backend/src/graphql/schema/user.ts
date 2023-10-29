@@ -1,5 +1,6 @@
 import { builder } from "../builder";
 import { prisma } from "../../client/prisma";
+import { resolve } from "path";
 
 builder.prismaObject("User", {
   fields: (t) => ({
@@ -7,6 +8,17 @@ builder.prismaObject("User", {
     email: t.exposeString("email"),
     name: t.exposeString("name"),
     avatar: t.exposeString("avatar"),
+    balance: t.exposeInt("balance"),
+    transactions: t.prismaField({
+      type: ["Transaction"],
+      resolve: async (query, _root, _args, ctx) => {
+        return await prisma.transaction.findMany({
+          where: {
+            id: "a",
+          },
+        });
+      },
+    }),
   }),
 });
 

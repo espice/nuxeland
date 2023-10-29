@@ -11,14 +11,33 @@ generator pothos {
 
 datasource db {
   provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  url      = env("POSTGRES_PRISMA_URL") // uses connection pooling
 
   relationMode = "prisma"
 }
 
 model User {
-  id     String @id @default(uuid())
-  email  String @unique
-  name   String
-  avatar String
+  id       String        @id @default(uuid())
+  email    String        @unique
+  name     String
+  avatar   String
+  balance  Int           @default(0)
+  payouts  Transaction[] @relation("user")
+  received Transaction[] @relation("receiver")
+
+  @@index([email])
+  @@index([id])
+}
+
+model Transaction {
+  id          String @id @default(uuid())
+  initiator   User   @relation("user", fields: [initiatorId], references: [id])
+  initiatorId String
+  receiver    User   @relation("receiver", fields: [receiverId], references: [id])
+  receiverId  String
+  amount      Int
+
+  @@index([id])
+  @@index([initiatorId])
+  @@index([receiverId])
 }

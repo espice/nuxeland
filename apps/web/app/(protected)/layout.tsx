@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import React from "react";
 import Nav from "./Nav";
 
-export default async function AuthLayout({
+export default function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
