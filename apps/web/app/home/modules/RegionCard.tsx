@@ -7,15 +7,19 @@ const cx = classNames.bind(styles);
 
 export default function RegionCard({ region }: { region: any }) {
   const [hover, setHover] = useState(false);
+  const [focus, setFocus] = useState(false);
 
   return (
     <div
       className={cx({
         [styles.card]: true,
         [styles.card__hover]: hover,
+        [styles.card__focus]: focus,
       })}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      onMouseDown={() => setFocus(true)}
+      onMouseUp={() => setFocus(false)}
       style={{
         backgroundColor: region.background,
         color: region.primary,
