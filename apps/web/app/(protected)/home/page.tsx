@@ -24,7 +24,7 @@ export default function Dashboard() {
           <div className={PageStyles.main__section__heading}>REGIONS</div>
           <div className={PageStyles.main__section__content}>
             {regions.map((region) => {
-              return <RegionCard region={region} />;
+              return <RegionCard region={region} key={region.name} />;
             })}
           </div>
         </div>
