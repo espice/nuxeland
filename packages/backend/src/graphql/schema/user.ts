@@ -1,6 +1,5 @@
 import { builder } from "../builder";
 import { prisma } from "../../client/prisma";
-import { resolve } from "path";
 
 builder.prismaObject("User", {
   fields: (t) => ({
@@ -14,8 +13,16 @@ builder.prismaObject("User", {
       resolve: async (query, _root, _args, ctx) => {
         return await prisma.transaction.findMany({
           where: {
-            id: "a",
+            OR: [
+              {
+                receiverId: ctx.userId,
+              },
+              {
+                initiatorId: ctx.userId,
+              },
+            ],
           },
+          ...query,
         });
       },
     }),
