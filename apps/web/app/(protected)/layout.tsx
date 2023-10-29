@@ -3,6 +3,7 @@
 import { useUser } from "@/utils/hooks/useUser";
 import { redirect } from "next/navigation";
 import React from "react";
+import Nav from "./Nav";
 
 export default async function AuthLayout({
   children,
@@ -11,9 +12,14 @@ export default async function AuthLayout({
 }) {
   const user = useUser();
 
-  if(!user){
-    redirect("/")
+  if (!user) {
+    redirect("/");
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <Nav />
+    </>
+  );
 }

@@ -20,3 +20,10 @@ a {
 body {
   background-color: #f6f6f6;
 }
+
+*:focus {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
