@@ -110,7 +110,7 @@ export const fileRouter = async (
   for (const file of routeFiles) {
     if (file.endsWith(".js")) {
       const importedFile = await import(opts.dir + "/" + file);
-      const url = pathToUrl(file);
+      const url = pathToUrl(file).replaceAll("\\", "/");
 
       for (const method in importedFile) {
         if (httpMethods.has(method)) {
