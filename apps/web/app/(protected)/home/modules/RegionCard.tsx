@@ -1,9 +1,21 @@
+"use client";
+
+import { useState } from "react";
 import styles from "./RegionCard.module.scss";
+import classNames from "classnames";
+const cx = classNames.bind(styles);
 
 export default function RegionCard({ region }: { region: any }) {
+  const [hover, setHover] = useState(false);
+
   return (
     <div
-      className={styles.card}
+      className={cx({
+        [styles.card]: true,
+        [styles.card__hover]: hover,
+      })}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
       style={{
         backgroundColor: region.background,
         color: region.primary,
