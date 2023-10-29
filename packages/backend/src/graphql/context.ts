@@ -11,7 +11,8 @@ export const getContext = async ({
 }: {
   req: FastifyRequest;
 }): Promise<GraphQLContext> => {
-  const accessToken = req.cookies["token"];
+  const accessToken = req.cookies["at"];
+  
   if (accessToken) {
     try {
       const { userId }: { userId: string } = await tokenVerifier(accessToken);

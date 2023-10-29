@@ -1,10 +1,10 @@
 "use client";
 
-import PageStyles from "../styles/shared/page/index.module.scss";
-import { regions } from "../utils/regions";
+import PageStyles from "@/styles/shared/page/index.module.scss";
+import { regions } from "@/utils/regions";
 import RegionCard from "./modules/RegionCard";
 import { useRef, useState } from "react";
-import { Popup, useOnClickOutside } from "../components/Popup/index.jsx";
+import { Popup, useOnClickOutside } from "@/components/Popup";
 
 export default function Dashboard() {
   const [regionPopupOpen, setRegionPopupOpen] = useState(true);
