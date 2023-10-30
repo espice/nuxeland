@@ -1,4 +1,3 @@
-
 "use client";
 
 import styles from "./index.module.scss";
@@ -21,6 +20,7 @@ export default function useOnClickOutside(ref: any, handler: Function) {
   );
   useEffect(() => {
     const listener = (event: any) => {
+      event.stopPropagation();
       // Do nothing if clicking ref's element or descendent elements
       if (!ref.current || ref.current.contains(event.target)) {
         return;
@@ -51,7 +51,6 @@ const Popup = React.forwardRef((props: any, ref) => {
     center = false,
     ...others
   } = props;
-  console.log(popupState);
   const isPhone = useMediaQuery({ query: "(max-width: 460px)" });
 
   return (
@@ -60,7 +59,7 @@ const Popup = React.forwardRef((props: any, ref) => {
         className={cx(styles["popup-overlay"], {
           [styles["popup-overlay--open"]]: popupState,
         })}
-      />
+      ></div>
       <div
         className={
           isPhone

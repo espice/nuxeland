@@ -4,6 +4,7 @@ import AddBalance from "./AddBalance";
 
 import styles from "./index.module.scss";
 import classNames from "classnames/bind";
+import ShowQRButton from "./ShowQR";
 const cx = classNames.bind(styles);
 
 async function getData() {
@@ -33,8 +34,12 @@ export default async function PayPage() {
 
   return (
     <div className={PageStyles.main}>
-      <div className={PageStyles.main__title} style={{ color: "#5BBB5F" }}>
+      <div
+        className={cx(PageStyles.main__title, styles.title)}
+        style={{ color: "#5BBB5F" }}
+      >
         Currency
+        <ShowQRButton />
       </div>
 
       <div className={PageStyles.main__section}>
