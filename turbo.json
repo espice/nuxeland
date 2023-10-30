@@ -3,13 +3,16 @@
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
     "@nuxeland/database#prisma:generate": {
+      "cache": false,
       "inputs": ["prisma/**"],
       "outputs": ["dist/**"]
     },
     "@nuxeland/backend#build": {
+      "cache": false,
       "dependsOn": ["@nuxeland/database#prisma:generate"]
     },
     "@nuxeland/web#build": {
+      "cache": false,
       "dependsOn": ["@nuxeland/backend#build"],
       "outputs": [".next"]
     },
