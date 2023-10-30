@@ -59,7 +59,8 @@ const Popup = React.forwardRef((props: any, ref) => {
         className={cx(styles["popup-overlay"], {
           [styles["popup-overlay--open"]]: popupState,
         })}
-      ></div>
+        onClick={(e) => {console.log(e.stopPropagation(), "sucktits")}}
+      />
       <div
         className={
           isPhone
