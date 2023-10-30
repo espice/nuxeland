@@ -1,5 +1,5 @@
 .popup-overlay {
-  z-index: 40;
+  z-index: 70;
   position: fixed;
   top: 0;
  
@@ -34,7 +34,7 @@
   padding: 40px;
   display: flex;
   flex-direction: column;
-  z-index: 51;
+  z-index: 80;
   border-radius: 10px;
   display: flex;
   opacity: 0;
@@ -59,7 +59,7 @@
     padding: 32px;
     display: flex;
     flex-direction: column;
-    z-index: 52;
+    z-index: 80;
     // border-radius: 10px;
     display: flex;
     // opacity: 0;

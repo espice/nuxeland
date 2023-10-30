@@ -24,7 +24,6 @@ async function getUser() {
     });
     return me;
   } catch (e) {
-    console.log(e);
     return null;
   }
 }
