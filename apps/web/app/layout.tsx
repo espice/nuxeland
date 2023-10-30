@@ -10,6 +10,8 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "nuxEland",
   description: "Welcome to the fun filled lands!",
+  manifest: "/manifest.json",
+  themeColor: "#D486B8",
 };
 
 async function getUser() {
