@@ -32,4 +32,4 @@ export const builder = new SchemaBuilder<BuilderType>({
 });
 
 builder.queryType();
-// builder.mutationType();
+builder.mutationType();

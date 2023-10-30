@@ -1,4 +1,3 @@
-
 "use client";
 
 import styles from "./index.module.scss";
@@ -21,6 +20,7 @@ export default function useOnClickOutside(ref: any, handler: Function) {
   );
   useEffect(() => {
     const listener = (event: any) => {
+      event.stopPropagation();
       // Do nothing if clicking ref's element or descendent elements
       if (!ref.current || ref.current.contains(event.target)) {
         return;
