@@ -2,7 +2,7 @@
   z-index: 40;
   position: fixed;
   top: 0;
- 
+
   left: 0;
   width: 100vw;
   height: 100vh;
@@ -44,6 +44,8 @@
 
   &--phone {
     // min-height: 65vh;
+    max-height: 90vh;
+    overflow-y: scroll;
     min-width: 30vw;
     position: fixed;
     // top: 50vh;

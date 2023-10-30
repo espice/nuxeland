@@ -32,14 +32,16 @@ model User {
 }
 
 model Transaction {
-  id          String @id @default(uuid())
-  initiator   User   @relation("user", fields: [initiatorId], references: [id])
-  initiatorId String
-  receiver    User   @relation("receiver", fields: [receiverId], references: [id])
-  receiverId  String
-  amount      Int
+  id              String  @id @default(uuid())
+  initiator       User    @relation("user", fields: [initiatorId], references: [id])
+  initiatorId     String
+  receiver        User    @relation("receiver", fields: [receiverId], references: [id])
+  receiverId      String
+  amount          Int
+  stripeSessionId String? 
 
   @@index([id])
   @@index([initiatorId])
   @@index([receiverId])
+  @@index([stripeSessionId])
 }

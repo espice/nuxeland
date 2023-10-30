@@ -37,12 +37,12 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <ForceMobile>
-        <body className={inter.className}>
+      <body className={inter.className}>
+        <ForceMobile>
           <AuthProvider user={user}>{children}</AuthProvider>
           <div id={"popupContainer"} />
-        </body>
-      </ForceMobile>
+        </ForceMobile>
+      </body>
     </html>
   );
 }

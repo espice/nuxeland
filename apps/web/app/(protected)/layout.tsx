@@ -1,7 +1,7 @@
 "use client";
 
 import { useUser } from "@/utils/hooks/useUser";
-import { redirect } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import React from "react";
 import Nav from "./Nav";
 
@@ -11,6 +11,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   const user = useUser();
+  const pathname = usePathname();
 
   if (!user) {
     redirect("/");
@@ -19,7 +20,7 @@ export default function AuthLayout({
   return (
     <>
       {children}
-      <Nav />
+      {pathname != "/pay/return" && <Nav />}
     </>
   );
 }

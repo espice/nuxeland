@@ -11,6 +11,7 @@ export default function ForceMobile({
 
   useEffect(() => {
     if (window) {
+      console.log(window.innerWidth);
       if (window.innerWidth > 450) {
         setIsMobile(false);
       } else {
