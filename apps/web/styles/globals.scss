@@ -19,7 +19,9 @@ a {
 
 body {
   background-color: #f6f6f6;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+
 }
 
 *:focus {
