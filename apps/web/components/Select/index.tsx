@@ -17,6 +17,7 @@ export default function Selector({
       ...base,
       letterSpacing: "-0.5px",
       paddingLeft: "-20px",
+      minWidth: "100%",
       borderRadius: "12px",
       fontWeight: "600",
       fontSize: "16px",
@@ -65,6 +66,7 @@ export default function Selector({
       paddingBottom: "16px",
       fontSize: "14px",
       fontWeight: "600",
+      
       backgroundColor:
         state.data === state.selectProps.value ? "#348CB4" : "#ffffff",
       color: state.data === state.selectProps.value ? "#ffffff" : "#313131",
@@ -79,7 +81,7 @@ export default function Selector({
     <Select
       className="react-select-container"
       classNamePrefix="react-select"
-      defaultValue={1}
+      defaultValue={options[1]}
       theme={(theme) => ({
         ...theme,
         borderRadius: 12,
@@ -97,6 +99,9 @@ export default function Selector({
       styles={style}
       menuPosition={"fixed"}
       value={value}
+      onChange={(value)=>{
+        setValue(value);
+      }}
     />
   );
 }
