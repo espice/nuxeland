@@ -8,7 +8,7 @@ const cx = classNames.bind(PageStyles);
 import PlusIcon from "@/public/plus.svg";
 import { useState, useRef, startTransition } from "react";
 import { Popup, useOnClickOutside } from "@/components/Popup";
-import { gqlClient } from "@/utils/gql";
+import { gqlClient } from "@/utils/gqlClientSide";
 import StripePayment from "./StripePayment";
 
 export default function AddBalance() {
@@ -46,15 +46,14 @@ export default function AddBalance() {
                 onSubmit={async (e) => {
                   e.preventDefault();
                   setLoading(true);
-                  const { createCheckout: clientSecret } = await gqlClient(
-                    true
-                  ).mutation({
-                    createCheckout: {
-                      __args: {
-                        amount,
+                  const { createCheckout: clientSecret } =
+                    await gqlClient().mutation({
+                      createCheckout: {
+                        __args: {
+                          amount,
+                        },
                       },
-                    },
-                  });
+                    });
 
                   setStripeClientSecret(clientSecret);
                   setLoading(false);
