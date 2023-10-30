@@ -51,7 +51,6 @@ const Popup = React.forwardRef((props: any, ref) => {
     center = false,
     ...others
   } = props;
-  console.log(popupState);
   const isPhone = useMediaQuery({ query: "(max-width: 460px)" });
 
   return (
@@ -60,6 +59,7 @@ const Popup = React.forwardRef((props: any, ref) => {
         className={cx(styles["popup-overlay"], {
           [styles["popup-overlay--open"]]: popupState,
         })}
+        onClick={(e) => {console.log(e.stopPropagation(), "sucktits")}}
       />
       <div
         className={

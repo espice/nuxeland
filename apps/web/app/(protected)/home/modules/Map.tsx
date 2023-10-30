@@ -1,57 +1,52 @@
 "use client";
 
 import { useRef, useState } from "react";
-import styles from "./RegionCard.module.scss";
-import classNames from "classnames";
+import { regions } from "@/utils/regions";
+import styles from "./Map.module.scss";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import useOnClickOutside, { Popup } from "@/components/Popup";
-const cx = classNames.bind(styles);
 
-export default function RegionCard({ region }: { region: any }) {
-  const [hover, setHover] = useState(false);
-  const [focus, setFocus] = useState(false);
-  const regionPopupRef = useRef(null);
-  const [regionPopupOpen, setRegionPopupOpen] = useState(false);
-  useOnClickOutside(regionPopupRef, () => {setRegionPopupOpen(false)})
-  return (
-    <div
-      className={cx({
-        [styles.card]: true,
-        [styles.card__hover]: hover,
-        [styles.card__focus]: focus,
-      })}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      onMouseUp={() => setFocus(false)}
-      style={{
-        backgroundColor: region.background,
-        color: region.primary,
-      }}
-
-      onClick={() => {setRegionPopupOpen(!regionPopupOpen), setFocus(true)}}
-    >
-      <div className={styles.card__name}>{region.name}</div>
-      <div className={styles.card__arrow}>
-        <svg
-          width="14"
-          height="16"
-          viewBox="0 0 14 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g clipPath="url(#clip0_32_61)">
-            <path
-              d="M7.05194 2.42264C6.86073 2.53445 6.70025 2.7044 6.58816 2.91378C6.47608 3.12317 6.41674 3.36385 6.41669 3.60931L6.4161 5.33331H2.33335C2.02393 5.33331 1.72719 5.47378 1.5084 5.72383C1.2896 5.97388 1.16669 6.31302 1.16669 6.66664V9.3333L1.1696 9.4333C1.19168 9.76874 1.32388 10.0822 1.5397 10.311C1.75552 10.5397 2.03902 10.6667 2.33335 10.6666L6.4161 10.666L6.41669 12.3906C6.41674 12.6543 6.48519 12.912 6.61338 13.1312C6.74158 13.3505 6.92377 13.5213 7.13692 13.6222C7.35007 13.7231 7.58461 13.7495 7.81089 13.6981C8.03717 13.6467 8.24503 13.5197 8.40819 13.3333L12.25 8.94264C12.4687 8.6926 12.5916 8.35352 12.5916 7.99997C12.5916 7.64642 12.4687 7.30734 12.25 7.05731L8.40819 2.66664C8.24503 2.48006 8.03712 2.35298 7.81076 2.30148C7.5844 2.24998 7.34976 2.27637 7.13652 2.37731L7.05194 2.42264Z"
-              fill={region.primary}
-            />
-          </g>
-          <defs>
-            <clipPath id="clip0_32_61">
-              <rect width="14" height="16" fill="white" />
-            </clipPath>
-          </defs>
-        </svg>
-      </div>
-      <Popup ref={regionPopupRef} popupState={regionPopupOpen}>
+const Map = () => {
+    console.log(regions)
+    const [region, setRegion] = useState(Object);
+    const [regionPopupOpen, setRegionPopupOpen] = useState(false);
+    const regionPopupRef = useRef(null);
+    useOnClickOutside(regionPopupRef, () => {setRegionPopupOpen(false)})
+    const [expand, setExpand] = useState(false);
+    return (
+        <div style={{overflow: 'hidden',}}>
+        <div className={styles.map}>
+            <div className={styles.map__image}>
+                
+            </div>
+            <span className={styles.map__text}>Expand to know more about this region</span>
+            <div className={styles.map__expand} style={{cursor: 'pointer'}} onClick={() => {setExpand(true)}}>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.125 9.8175L8.1825 10.875L4.8075 14.25H7.5V15.75H2.25V10.5H3.75V13.1925L7.125 9.8175ZM8.1825 7.125L7.125 8.1825L3.75 4.8075V7.5H2.25V2.25H7.5V3.75H4.8075L8.1825 7.125ZM10.875 9.8175L14.25 13.1925V10.5H15.75V15.75H10.5V14.25H13.1925L9.8175 10.875L10.875 9.8175ZM9.8175 7.125L13.1925 3.75H10.5V2.25H15.75V7.5H14.25V4.8075L10.875 8.1825L9.8175 7.125Z" fill="#858585"/>
+                </svg>
+            </div>
+           
+        </div>
+        {expand ? (
+                <div style={{position: 'absolute', top: '0', left: '0', height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', overflow: 'hidden'}}>
+                    <svg style={{position: 'absolute', zIndex: '1000', top: '26px', right: '26px', display: 'block', cursor: 'pointer', color: 'white'}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="currentColor" fill-rule="evenodd" d="M11.782 4.032a.575.575 0 1 0-.813-.814L7.5 6.687L4.032 3.218a.575.575 0 0 0-.814.814L6.687 7.5l-3.469 3.468a.575.575 0 0 0 .814.814L7.5 8.313l3.469 3.469a.575.575 0 0 0 .813-.814L8.313 7.5l3.469-3.468Z" clip-rule="evenodd" onClick={() => {setExpand(false)}}/></svg>
+                    <div className={styles.overlay}></div>
+                        <TransformWrapper limitToBounds={false}>
+                            <TransformComponent wrapperStyle={{zIndex: '71', overflow: 'visible' }}>
+                                <img src="/nuxeland.png" style={{width: '100vw', height: 'auto'}}></img>
+                                <div style={{position: 'absolute', top: '25%', left: '10%'}} onClick={() => {setRegion(regions[0]), setRegionPopupOpen(true)}} className={styles.link}>{regions[0].name}</div>
+                                <div style={{position: 'absolute', top: '40%', left: '28%'}} onClick={() => {setRegion(regions[1]), setRegionPopupOpen(true)}} className={styles.link}>{regions[1].name}</div>
+                                <div style={{position: 'absolute', top: '20%', left: '48%'}} onClick={() => {setRegion(regions[2]), setRegionPopupOpen(true)}} className={styles.link}>{regions[2].name}</div>
+                                <div style={{position: 'absolute', top: '28%', left: '85%'}} onClick={() => {setRegion(regions[3]), setRegionPopupOpen(true)}}  className={styles.link}>{regions[3].name}</div>
+                                <div style={{position: 'absolute', top: '48%', left: '50%'}} onClick={() => {setRegion(regions[4]), setRegionPopupOpen(true)}} className={styles.link}>{regions[4].name}</div>
+                                <div style={{position: 'absolute', top: '60%', left: '20%'}} onClick={() => {setRegion(regions[5]), setRegionPopupOpen(true)}} className={styles.link}>{regions[5].name}</div>
+                            </TransformComponent>
+                        </TransformWrapper>   
+                </div>
+            ) : ( 
+                <div></div>
+            )}
+            <Popup ref={regionPopupRef} popupState={regionPopupOpen}>
           <div className={styles.popup}>
             <h1 className={styles.popup__heading} style={{color: region.primary}}>{region.name}</h1>
             <p className={styles.popup__desc}>The Tundra is an icey wasteland, with nearly no vegetation and life. Temperatures reach all time lows daily as the night is unsurvive-able for most.</p>
@@ -110,6 +105,8 @@ export default function RegionCard({ region }: { region: any }) {
             </svg>
           </button>
       </Popup>
-    </div>
-  );
+        </div>
+    )
 }
+
+export default Map;

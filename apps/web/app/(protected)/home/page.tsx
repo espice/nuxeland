@@ -6,6 +6,7 @@ import RegionCard from "./modules/RegionCard";
 import { useRef, useState } from "react";
 import { Popup, useOnClickOutside } from "@/components/Popup";
 import { useUser } from "@/utils/hooks/useUser";
+import Map from "./modules/Map";
 
 export default function Dashboard() {
   const [regionPopupOpen, setRegionPopupOpen] = useState(true);
@@ -20,6 +21,7 @@ export default function Dashboard() {
         </div>
         <div className={PageStyles.main__section}>
           <div className={PageStyles.main__section__heading}>MAP</div>
+          <Map />
         </div>
 
         <div className={PageStyles.main__section}>
