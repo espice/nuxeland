@@ -1,5 +1,6 @@
 import { builder } from "../builder";
 import { prisma } from "../../client/prisma";
+import { env } from "../../utils/env";
 
 builder.prismaObject("User", {
   fields: (t) => ({
