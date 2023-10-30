@@ -7,6 +7,7 @@ import CoinIcon from "@/public/coin.svg";
 import styles from "./index.module.scss";
 import classNames from "classnames/bind";
 import ShowQRButton from "./ShowQR";
+import PayButton from "./PayButton";
 const cx = classNames.bind(styles);
 
 async function getData() {
@@ -67,7 +68,10 @@ export default async function PayPage() {
         </div>
         {data.transactions.reverse().map((transaction) => {
           return (
-            <div className="w-full bg-[#fff] px-[16px] h-[54px] my-[3px] rounded-[8px] flex items-center justify-between">
+            <div
+              className="w-full bg-[#fff] px-[16px] h-[54px] my-[3px] rounded-[8px] flex items-center justify-between"
+              key={transaction.id}
+            >
               <p className="text-[#4A4A4A] font-[600] text-[16px]">
                 {transaction.receiver.id === transaction.initiator.id
                   ? "Add Balance"
@@ -98,6 +102,7 @@ export default async function PayPage() {
           );
         })}
       </div>
+      <PayButton />
     </div>
   );
 }
