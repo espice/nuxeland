@@ -11,8 +11,8 @@ import { languages } from "@/utils/languages";
 import ts from "typescript";
 
 export default function TranslatePage() {
-  const [languageFrom, setLanguageFrom] = useState(null);
-  const [languageTo, setLanguageTo] = useState(null);
+  const [languageFrom, setLanguageFrom] = useState<any>(null);
+  const [languageTo, setLanguageTo] = useState<any>(null);
   const [fromText, setFromText] = useState("");
   const [toText, setToText] = useState("");
   const [translating, setTranslating] = useState(false);
@@ -42,6 +42,8 @@ export default function TranslatePage() {
   }, []);
 
   const translate = async () => {
+    console.log('translating')
+
     if (translating) return;
     setTranslating(true);
     setToText("");
@@ -61,12 +63,16 @@ export default function TranslatePage() {
       }
     );
 
+    console.log(res.data);
+
     setToText(res.data.translatedText + "from" + fromText);
     setTranslating(false);
   };
 
   useEffect(() => {
-    console.log(languageFrom, languageTo);
+    console.log('sf')
+    if (!languageFrom || !languageTo) return;
+    console.log(languageFrom, languageTo, "hello");
     if (languageFrom === languageTo) {
       let arrWithoutFrom = languages.filter(
         (lang) => lang.value !== languageFrom.value
