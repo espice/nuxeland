@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "sh.hop.nuxeland.twa",
+      "sha256_cert_fingerprints": [
+        "04:FD:6E:00:95:DB:23:FB:FC:A0:87:0A:9E:D0:ED:A8:03:8B:81:61:35:B4:3D:11:EC:85:8E:F3:59:58:ED:B7"
+      ]
+    }
+  }
+]

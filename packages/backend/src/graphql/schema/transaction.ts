@@ -36,7 +36,7 @@ builder.mutationFields((t) => ({
           {
             price_data: {
               unit_amount: args.amount,
-              currency: "usd",
+              currency: "inr",
               product_data: {
                 name: "Add Balance",
                 description: "Add Balance to your nuxEland Account.",
@@ -52,6 +52,53 @@ builder.mutationFields((t) => ({
       });
 
       return checkoutSession.client_secret;
+    },
+  }),
+  addBalance: t.withAuth({ loggedIn: true }).field({
+    type: "Boolean",
+    args: {
+      sessionId: t.arg.string({ required: true }),
+    },
+    resolve: async (_root, args, ctx) => {
+      try {
+        const session = await stripe.checkout.sessions.retrieve(args.sessionId);
+
+        if (session.status != "complete") return false;
+
+        const transaction = await prisma.transaction.findFirst({
+          where: {
+            stripeSessionId: args.sessionId,
+          },
+        });
+
+        if (transaction) return false;
+
+        const amount = session.amount_subtotal as number;
+
+        await prisma.user.update({
+          where: {
+            id: ctx.userId,
+          },
+          data: {
+            balance: {
+              increment: amount,
+            },
+          },
+        });
+
+        await prisma.transaction.create({
+          data: {
+            amount,
+            receiverId: ctx.userId,
+            initiatorId: ctx.userId,
+            stripeSessionId: args.sessionId,
+          },
+        });
+
+        return true;
+      } catch (e) {
+        return false;
+      }
     },
   }),
 }));

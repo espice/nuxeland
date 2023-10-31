@@ -7,10 +7,12 @@ export default function Selector({
   value,
   setValue,
   options,
+  defaultValue,
 }: {
   value: any;
   setValue: any;
   options: any;
+  defaultValue: any;
 }) {
   const style = {
     control: (base: any, state: any) => ({
@@ -66,7 +68,7 @@ export default function Selector({
       paddingBottom: "16px",
       fontSize: "14px",
       fontWeight: "600",
-      
+
       backgroundColor:
         state.data === state.selectProps.value ? "#348CB4" : "#ffffff",
       color: state.data === state.selectProps.value ? "#ffffff" : "#313131",
@@ -98,8 +100,8 @@ export default function Selector({
       options={options}
       styles={style}
       menuPosition={"fixed"}
-      value={value}
-      onChange={(value)=>{
+      value={value || defaultValue}
+      onChange={(value) => {
         setValue(value);
       }}
     />

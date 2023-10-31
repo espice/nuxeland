@@ -28,7 +28,7 @@ export default function ShowQRButton() {
         <p className="font-[600] text-[#5B5B5B] text-[17px] leading-[-30px] tracking-[-4.5%] text-[16px]">
           Show this QR Code to others to receive payments
         </p>
-        <div className="mt-[20px] ml-auto mr-auto">
+        <div className="mt-[40px] ml-auto mr-auto mb-[40px]">
           <QRCode value={user!.id} fgColor={"#3F3F3F"} />
         </div>
       </Popup>

@@ -10,6 +10,8 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "nuxEland",
   description: "Welcome to the fun filled lands!",
+  manifest: "/manifest.json",
+  themeColor: "#D486B8",
 };
 
 async function getUser() {
@@ -37,12 +39,12 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <ForceMobile>
-        <body className={inter.className}>
+      <body className={inter.className}>
+        <ForceMobile>
           <AuthProvider user={user}>{children}</AuthProvider>
           <div id={"popupContainer"} />
-        </body>
-      </ForceMobile>
+        </ForceMobile>
+      </body>
     </html>
   );
 }

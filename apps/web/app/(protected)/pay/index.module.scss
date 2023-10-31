@@ -16,4 +16,9 @@
   height: 74px;
   margin-top: 12px;
   border-radius: 12px;
+  display: flex;
+
+  &__section {
+    margin-top: 20px;
+  }
 }

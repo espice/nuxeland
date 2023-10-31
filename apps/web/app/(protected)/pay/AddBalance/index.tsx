@@ -22,6 +22,9 @@ export default function AddBalance() {
 
   useOnClickOutside(addBalanceRef, () => {
     setAddBalanceModal(false);
+    setAmount(10);
+    setLoading(false);
+    setStripeClientSecret(null);
   });
 
   return (
@@ -50,7 +53,7 @@ export default function AddBalance() {
                     await gqlClient().mutation({
                       createCheckout: {
                         __args: {
-                          amount,
+                          amount: amount * 100,
                         },
                       },
                     });
@@ -60,7 +63,7 @@ export default function AddBalance() {
                 }}
               >
                 <label className="flex flex-col">
-                  <span className={styles.form_label}>AMOUNT (IN USD)</span>
+                  <span className={styles.form_label}>AMOUNT (IN INR)</span>
                   <input
                     placeholder=""
                     value={amount}
