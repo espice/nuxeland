@@ -8,11 +8,13 @@ export default function Selector({
   setValue,
   options,
   defaultValue,
+  ref,
 }: {
   value: any;
   setValue: any;
   options: any;
   defaultValue: any;
+  ref: any;
 }) {
   const style = {
     control: (base: any, state: any) => ({
@@ -83,7 +85,6 @@ export default function Selector({
     <Select
       className="react-select-container"
       classNamePrefix="react-select"
-      defaultValue={options[1]}
       theme={(theme) => ({
         ...theme,
         borderRadius: 12,
@@ -97,10 +98,11 @@ export default function Selector({
           neutral90: "#313131",
         },
       })}
+      ref={ref}
       options={options}
       styles={style}
       menuPosition={"fixed"}
-      value={value || defaultValue}
+      value={value}
       onChange={(value) => {
         setValue(value);
       }}
