@@ -8,7 +8,13 @@ import { useOnClickOutside, Popup } from "@/components/Popup";
 import Loader from "@/components/Loader";
 import { gqlClient } from "@/utils/gqlClientSide";
 
+import TickIcon from "@/public/check.svg";
+import ErrorIcon from "@/public/error.svg";
+import { useRouter } from "next/navigation";
+
 export default function PayButton() {
+  const router = useRouter();
+
   const [fetching, setFetching] = useState(false);
   const [scanPopup, setScanPopup] = useState(false);
   const [to, setTo] = useState<{
@@ -22,6 +28,7 @@ export default function PayButton() {
   const [amount, setAmount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<boolean | null>(null);
 
   useOnClickOutside(scanPopupRef, () => {
     setScanPopup(false);
@@ -36,8 +43,22 @@ export default function PayButton() {
         Scan to Pay
       </button>
       <Popup popupState={scanPopup} ref={scanPopupRef}>
-        {!to ? (
-          <>
+        {result ? (
+          <div className="text-[#5BBB5F] flex flex-col items-center justify-center">
+            <TickIcon />
+            <p className="mt-[14px] text-[20px] font-[500]">
+              Payment Successful!
+            </p>
+            <p className="mt-[8px] text-[#00000080]">Redirecting...</p>
+          </div>
+        ) : result === false ? (
+          <div className="text-[#BD1C1C] flex flex-col items-center justify-center">
+            <ErrorIcon />
+            <p className="mt-[14px] text-[20px] font-[500]">An error occured</p>
+            <p className="mt-[8px] text-[#00000080]">Redirecting...</p>
+          </div>
+        ) : !to ? (
+          <div>
             <p className="text-[#3F3F3F] font-bold text-[22px]">Scan QR Code</p>
             <p className="font-[600] text-[#5B5B5B] text-[17px] leading-[-30px] tracking-[-4.5%] text-[16px]">
               Scan a QR Code to make a Payment
@@ -87,9 +108,9 @@ export default function PayButton() {
                 Looking for a valid QR Code...
               </p>
             </div>
-          </>
+          </div>
         ) : (
-          <>
+          <div>
             <p className="text-[#3F3F3F] font-bold text-[22px]">Pay To</p>
             <div className="flex flex-col items-center mt-[20px]">
               <img
@@ -111,6 +132,25 @@ export default function PayButton() {
                 if (!amount || amount === 0)
                   return setError("Amount is Required");
 
+                const res = await gqlClient().mutation({
+                  pay: {
+                    __args: {
+                      toId: to.id,
+                      amount: (amount / 4) * 100,
+                    },
+                  },
+                });
+
+                setResult(res.pay);
+
+                setTimeout(() => {
+                  router.refresh();
+                  setScanPopup(false);
+                  setResult(null);
+                  setTo(null);
+                  setAmount(0);
+                }, 2000);
+
                 setLoading(false);
               }}
             >
@@ -124,6 +164,7 @@ export default function PayButton() {
                   className="p-[6px] text-[#313131] font-[16px] font-[500] h-[58px] w-full border-[2px] border-[#B8B8B8] rounded-[8px] mb-[12px] mt-[4px]"
                   required
                   min={1}
+                  step="0.01"
                 />
               </label>
               <button
@@ -134,7 +175,7 @@ export default function PayButton() {
                 {loading ? <Loader color="#fff" size={0.3} /> : "Pay"}
               </button>
             </form>
-          </>
+          </div>
         )}
       </Popup>
     </>
