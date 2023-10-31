@@ -64,7 +64,7 @@ const Map = () => {
               right: "26px",
               display: "block",
               cursor: "pointer",
-              color: "white",
+              color: "#333333",
             }}
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -91,58 +91,77 @@ const Map = () => {
                 style={{ width: "100vw", height: "auto" }}
               ></img>
               <div
-                style={{ position: "absolute", top: "25%", left: "10%" }}
+                style={{ position: "absolute", top: "13%", left: "10%", color: regions[0].primary, }}
                 onClick={() => {
                   setRegion(regions[0]), setRegionPopupOpen(true);
                 }}
                 className={styles.link}
               >
-                {regions[0].name}
+                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin-filled" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
+                </svg>
               </div>
               <div
-                style={{ position: "absolute", top: "40%", left: "28%" }}
+                style={{ position: "absolute", top: "30%", left: "26%", color: regions[1].primary, }}
                 onClick={() => {
                   setRegion(regions[1]), setRegionPopupOpen(true);
                 }}
                 className={styles.link}
               >
-                {regions[1].name}
+                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin-filled" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
+                </svg>
               </div>
               <div
-                style={{ position: "absolute", top: "20%", left: "48%" }}
+                style={{ position: "absolute", top: "5%", left: "48%", color: regions[2].primary,}}
                 onClick={() => {
                   setRegion(regions[2]), setRegionPopupOpen(true);
                 }}
                 className={styles.link}
               >
-                {regions[2].name}
+                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin-filled" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
+                </svg>
               </div>
               <div
-                style={{ position: "absolute", top: "28%", left: "85%" }}
+                style={{ position: "absolute", top: "20%", left: "83%", color: regions[3].primary, }}
+        
                 onClick={() => {
                   setRegion(regions[3]), setRegionPopupOpen(true);
                 }}
                 className={styles.link}
               >
-                {regions[3].name}
+                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin-filled" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
+                </svg>
               </div>
               <div
-                style={{ position: "absolute", top: "48%", left: "50%" }}
+                style={{ position: "absolute", top: "48%", left: "50%", color: regions[4].primary,}}
                 onClick={() => {
                   setRegion(regions[4]), setRegionPopupOpen(true);
                 }}
                 className={styles.link}
               >
-                {regions[4].name}
+                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin-filled" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
+                </svg>
               </div>
               <div
-                style={{ position: "absolute", top: "60%", left: "20%" }}
+                style={{ position: "absolute", top: "53%", left: "22%", color: regions[5].primary,}}
                 onClick={() => {
                   setRegion(regions[5]), setRegionPopupOpen(true);
                 }}
                 className={styles.link}
               >
-                {regions[5].name}
+                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin-filled" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
+                </svg>
               </div>
             </TransformComponent>
           </TransformWrapper>
