@@ -14,8 +14,16 @@
   align-items: center;
   gap: 8px;
 
-
   font-size: 16px;
   line-height: normal;
   letter-spacing: -0.72px;
+}
+
+.form_label {
+  font-size: 14px;
+  letter-spacing: -0.8px;
+  font-weight: 700;
+  color: var(--grey-400);
+  padding-top: 16px;
+  margin-top: 12px;
 }
