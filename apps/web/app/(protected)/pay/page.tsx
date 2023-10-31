@@ -62,6 +62,7 @@ export default async function PayPage() {
           </div>
         </div>
       </div>
+      <div className="h-[20px] w-full"></div>
       <div className={cx(PageStyles.main__section, styles.balance__section)}>
         <div className={cx(PageStyles.main__section__heading)}>
           TRANSACTION HISTORY
