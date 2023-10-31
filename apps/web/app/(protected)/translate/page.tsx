@@ -65,6 +65,17 @@ export default function TranslatePage() {
     setTranslating(false);
   };
 
+  useEffect(() => {
+    console.log(languageFrom, languageTo);
+    if (languageFrom === languageTo) {
+      let arrWithoutFrom = languages.filter(
+        (lang) => lang.value !== languageFrom.value
+      );
+
+      setLanguageTo(arrWithoutFrom[0]);
+    }
+  }, [languageFrom, languageTo]);
+
   if (languageFrom && languageTo)
     return (
       <div className={PageStyles.main}>
@@ -79,14 +90,7 @@ export default function TranslatePage() {
                 options={languages}
                 value={languageFrom}
                 setValue={(value: any) => {
-                  if (value === languageTo && languageTo) {
-                    let arrWithoutFrom = languages.filter(
-                      (lang) => lang.value !== value.value
-                    );
-
-                    setLanguageTo(arrWithoutFrom[0]);
-                    setLanguageFrom(value);
-                  }
+                  setLanguageFrom(value);
                 }}
                 defaultValue={languages[0]}
                 ref={fromLangRef}
