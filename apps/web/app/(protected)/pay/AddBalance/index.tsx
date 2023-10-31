@@ -10,6 +10,7 @@ import { useState, useRef, startTransition } from "react";
 import { Popup, useOnClickOutside } from "@/components/Popup";
 import { gqlClient } from "@/utils/gqlClientSide";
 import StripePayment from "./StripePayment";
+import Loader from "@/components/Loader";
 
 export default function AddBalance() {
   const addBalanceRef = useRef();
@@ -70,14 +71,16 @@ export default function AddBalance() {
                     onChange={(e) => setAmount(parseFloat(e.target.value))}
                     type="number"
                     className="p-[6px] text-[#313131] font-[16px] font-[500] h-[58px] w-full border-[2px] border-[#B8B8B8] rounded-[8px] mb-[12px] mt-[4px]"
+                    required
+                    min={1}
                   />
                 </label>
                 <button
-                  className="mt-[12px] h-[58px] w-full bg-[#5BBB5F] rounded-[8px] text-[#ffff] font-[600]"
+                  className="mt-[12px] h-[58px] w-full bg-[#5BBB5F] rounded-[8px] text-[#ffff] font-[600] flex items-center justify-center"
                   type="submit"
                   disabled={loading}
                 >
-                  {loading ? "Loading..." : "Continue"}
+                  {loading ? <Loader color="#fff" size={0.3} /> : "Continue"}
                 </button>
               </form>
             </>

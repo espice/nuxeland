@@ -101,4 +101,66 @@ builder.mutationFields((t) => ({
       }
     },
   }),
+  pay: t.withAuth({ loggedIn: true }).field({
+    type: "Boolean",
+    args: {
+      toId: t.arg.string({ required: true }),
+      amount: t.arg.float({ required: true }),
+    },
+    resolve: async (_root, args, ctx) => {
+      try {
+        const user = await prisma.user.findUnique({
+          where: {
+            id: ctx.userId,
+          },
+        });
+
+        if (!user) return false;
+
+        if (args.amount > user.balance) return false;
+
+        const to = await prisma.user.findUnique({
+          where: {
+            id: args.toId,
+          },
+        });
+
+        if (!to) return false;
+
+        await prisma.user.update({
+          where: {
+            id: ctx.userId,
+          },
+          data: {
+            balance: {
+              decrement: args.amount,
+            },
+          },
+        });
+
+        await prisma.user.update({
+          where: {
+            id: args.toId,
+          },
+          data: {
+            balance: {
+              increment: args.amount,
+            },
+          },
+        });
+
+        await prisma.transaction.create({
+          data: {
+            amount: args.amount,
+            initiatorId: ctx.userId,
+            receiverId: args.toId,
+          },
+        });
+
+        return true;
+      } catch (e) {
+        return false;
+      }
+    },
+  }),
 }));

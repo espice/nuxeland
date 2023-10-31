@@ -57,11 +57,12 @@ export default async function PayPage() {
             ₹{data.balance / 100}
           </div>
           <div className="w-1/2 flex items-center justify-center text-[#4E4E4E] font-[700] text-[28px]">
-            {(data.balance / 100) * 3.6}
+            {(data.balance / 100) * 4}
             <CoinIcon />
           </div>
         </div>
       </div>
+      <div className="h-[20px] w-full"></div>
       <div className={cx(PageStyles.main__section, styles.balance__section)}>
         <div className={cx(PageStyles.main__section__heading)}>
           TRANSACTION HISTORY
@@ -91,7 +92,7 @@ export default async function PayPage() {
                   `₹${transaction.amount / 100}`
                 ) : (
                   <>
-                    {(transaction.amount / 100) * 3.6}{" "}
+                    {(transaction.amount / 100) * 4}{" "}
                     <div className="ml-[2px]">
                       <CoinIcon height="18" width="18" />
                     </div>
@@ -103,6 +104,7 @@ export default async function PayPage() {
         })}
       </div>
       <PayButton />
+      <div className="h-[160px] w-full"></div>
     </div>
   );
 }
