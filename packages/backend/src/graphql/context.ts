@@ -13,8 +13,6 @@ export const getContext = async ({
 }): Promise<GraphQLContext> => {
   const accessToken = req.cookies["at"];
 
-  console.log(accessToken);
-
   if (accessToken) {
     try {
       const { userId }: { userId: string } = await tokenVerifier(accessToken);
