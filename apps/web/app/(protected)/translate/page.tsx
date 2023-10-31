@@ -14,24 +14,41 @@ export default function TranslatePage() {
   const [languageTo, setLanguageTo] = useState(languages[3]);
   const [fromText, setFromText] = useState("");
   const [toText, setToText] = useState("");
+  const [lastTranslated, setLastTranslated] = useState("");
   const [translating, setTranslating] = useState(false);
   const fromTextRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    if (fromText) {
-      setTimeout(translate, 1000);
-    }
-  }, [fromText]);
+    let typingTimer: any; //timer identifier
+    let doneTypingInterval = 1200; //time in ms (1.2 seconds)
+
+    fromTextRef.current?.addEventListener("keyup", () => {
+      console.log(fromText, fromTextRef.current?.value);
+
+      clearTimeout(typingTimer);
+      if (
+        fromTextRef.current?.value !== "" ||
+        fromTextRef.current?.value.trim() !== ""
+      ) {
+        console.log(fromText, fromTextRef.current?.value);
+        typingTimer = setTimeout(translate, doneTypingInterval);
+      }
+    });
+  }, []);
 
   const translate = async () => {
     if (translating) return;
     setTranslating(true);
+    setToText("");
+    console.log(fromText, fromTextRef.current?.value);
+
     let res = await axios.post(
-      "/api/translate",
+      "https://trans.zillyhuhn.com/translate",
       {
-        text: fromText,
+        q: fromText || fromTextRef.current?.value,
         source: languageFrom.value,
         target: languageTo.value,
+        format: "text",
       },
       {
         headers: {
@@ -40,7 +57,7 @@ export default function TranslatePage() {
       }
     );
 
-    console.log(res.data);
+    setToText(res.data.translatedText + "from" + fromText);
     setTranslating(false);
   };
 
@@ -51,6 +68,7 @@ export default function TranslatePage() {
       let arrWithoutFrom = languages.filter(
         (lang) => lang.value !== languageFrom.value
       );
+
       setLanguageTo(arrWithoutFrom[0]);
     }
   }, [languageFrom, languageTo]);

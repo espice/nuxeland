@@ -4,28 +4,25 @@ import { translate } from "@vitalets/google-translate-api";
 
 //@ts-ignore
 import Translator from "@andreasremdt/simple-translator";
+import axios from "axios";
 
 export async function POST(request: any) {
-  const { text, source, target } = await request.json();
+  const req = await request.json();
+  console.log(request);
 
-  let toTranslate = {
-    textToTranslate: {
-      text: text,
-    },
-  };
+  // const res = await axios.post("https://translate.terraprint.co/translate", {
+  //   body: { q, source, target, format: "text" },
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // });
 
-  console.log(toTranslate, target);
-
-  const translator = new Translator();
-
-  translator.add(source, toTranslate);
-
-  translator.translateForKey("textToTranslate.text", target);
-
+  // const { translatedText } = res.data;
+  // console.log(res.data);
   return NextResponse.json(
     {
       success: true,
-      data: toTranslate.textToTranslate.text,
+      data: translatedText,
     },
     {
       status: 200,
