@@ -20,6 +20,19 @@ export default function TranslatePage() {
   const fromTextRef = useRef<HTMLTextAreaElement>(null);
   const fromLangRef = useRef<any>(null);
   const toLangRef = useRef<any>(null);
+  const synth = window.speechSynthesis
+
+  const speak = (text: string) => {
+    const synth = window.speechSynthesis;
+    console.log('speaking')
+    if (!synth) {
+      console.log('nooooo')
+    };
+    const utterance = new SpeechSynthesisUtterance(text);
+
+    utterance.voice = synth.getVoices()[0];
+    synth.speak(utterance);
+  }
 
   useEffect(() => {
     //@ts-ignore
@@ -250,7 +263,7 @@ export default function TranslatePage() {
                   </svg>
                 </div>
 
-                <div className={styles.languageContainer__icons__icon}>
+                <div className={styles.languageContainer__icons__icon} onClick={() => {speak(fromText)}}>
                   <svg
                     width="24"
                     height="24"
@@ -338,6 +351,7 @@ export default function TranslatePage() {
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
+                    onClick={() => {speak(fromText)}}
                   >
                     <g clip-path="url(#clip0_81_7)">
                       <path
