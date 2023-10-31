@@ -351,7 +351,7 @@ export default function TranslatePage() {
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    onClick={() => {speak(fromText)}}
+                    onClick={() => {speak(toText)}}
                   >
                     <g clip-path="url(#clip0_81_7)">
                       <path
