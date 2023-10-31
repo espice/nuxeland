@@ -39,4 +39,5 @@ const nextConfig = {
   },
 };
 
-module.exports = withPlugins([withPWA, withSvgr], nextConfig);
+// module.exports = withPlugins([withPWA, withSvgr], nextConfig);
+module.exports = withSvgr({});
