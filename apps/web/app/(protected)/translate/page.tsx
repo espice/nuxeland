@@ -125,7 +125,7 @@ export default function TranslatePage() {
       let arrWithoutFrom = languages.filter(
         (lang) => lang.value !== languageFrom.value
       );
-      setLanguageTo(arrWithoutFrom[0]);
+      setTo(arrWithoutFrom[0]);
     }
     console.log(languageFrom, languageTo, "helloooo");
   }, [languageFrom, languageTo]);
