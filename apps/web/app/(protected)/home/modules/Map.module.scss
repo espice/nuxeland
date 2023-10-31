@@ -1,3 +1,20 @@
+@keyframes hilaado {
+  0% {
+    transform: translate( 0, 0px);
+  }
+  50% {
+    transform: translate(0, 6px);
+  }
+  75% {
+    transform: translate(0, -6px);
+  }
+
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+
+
 .map {
     padding: 14px;
     border-radius: 8px;
@@ -63,7 +80,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(255, 255, 255, 0.7);
     display: block;
     opacity: 1;
     transition:
@@ -74,7 +91,8 @@
 
 .link {
     font-weight: bold;
-    text-decoration: underline;
+    z-index: 250;   
+    animation: hilaado 1s infinite linear;
 }
 
 
