@@ -15,43 +15,70 @@ export default function TranslatePage() {
   const [languageTo, setLanguageTo] = useState<any>(null);
   const [fromText, setFromText] = useState("");
   const [toText, setToText] = useState("");
+  const [toTranslate, setToTranslate] = useState("");
   const [translating, setTranslating] = useState(false);
   const fromTextRef = useRef<HTMLTextAreaElement>(null);
   const fromLangRef = useRef<any>(null);
   const toLangRef = useRef<any>(null);
 
   useEffect(() => {
-    let typingTimer: any; //timer identifier
-    let doneTypingInterval = 1200; //time in ms (1.2 seconds)
-
     //@ts-ignore
     setLanguageFrom(languages[0]);
 
     //@ts-ignore
     setLanguageTo(languages[3]);
-
-    fromTextRef.current?.addEventListener("keyup", () => {
-      clearTimeout(typingTimer);
-      if (
-        fromTextRef.current?.value !== "" ||
-        fromTextRef.current?.value.trim() !== ""
-      ) {
-        typingTimer = setTimeout(translate, doneTypingInterval);
-      }
-    });
   }, []);
 
-  const translate = async () => {
-    console.log('translating')
+  useEffect(() => {
+    let typingTimer: any; //timer identifier
+    let doneTypingInterval = 1200; //time in ms (1.2 seconds)
 
-    if (translating) return;
+    if (!!fromTextRef.current) {
+      fromTextRef.current.addEventListener("keyup", () => {
+        // setToTranslate("");
+        clearTimeout(typingTimer);
+        if (
+          fromTextRef.current?.value !== "" ||
+          fromTextRef.current?.value.trim() !== ""
+        ) {
+          typingTimer = setTimeout(() => {
+            console.log("timeout");
+            translate(fromTextRef.current!.value);
+          }, doneTypingInterval);
+        } else {
+          setToTranslate("");
+        }
+      });
+    }
+  }, [fromTextRef.current]);
+
+  // useEffect(() => {
+  //   console.log("useeffect");
+  //   translate();
+  // }, [toTranslate]);
+
+  const translate = async (input: string) => {
+    console.log("translating");
+
+    if (translating) {
+      return;
+    }
+
+    if (input.trim().length < 1) {
+      setTranslating(false);
+      setToText("");
+      return;
+    }
+
     setTranslating(true);
     setToText("");
+
+    console.log(languageFrom.value, languageTo.value);
 
     let res = await axios.post(
       "https://translate.terraprint.co/translate",
       {
-        q: fromText || fromTextRef.current?.value,
+        q: input + ".",
         source: languageFrom.value,
         target: languageTo.value,
         format: "text",
@@ -65,12 +92,12 @@ export default function TranslatePage() {
 
     console.log(res.data);
 
-    setToText(res.data.translatedText + "from" + fromText);
+    setToText(res.data.translatedText);
     setTranslating(false);
   };
 
   useEffect(() => {
-    console.log('sf')
+    console.log("sf");
     if (!languageFrom || !languageTo) return;
     console.log(languageFrom, languageTo, "hello");
     if (languageFrom === languageTo) {
@@ -97,6 +124,8 @@ export default function TranslatePage() {
                 value={languageFrom}
                 setValue={(value: any) => {
                   setLanguageFrom(value);
+                  setFromText("");
+                  setToText("");
                 }}
                 defaultValue={languages[0]}
                 ref={fromLangRef}
@@ -107,6 +136,8 @@ export default function TranslatePage() {
                   let temp = languageFrom;
                   setLanguageFrom(languageTo);
                   setLanguageTo(temp);
+                  setFromText("");
+                  setToText("");
                 }}
               >
                 <svg
@@ -159,6 +190,8 @@ export default function TranslatePage() {
                 ref={toLangRef}
                 setValue={(value: any) => {
                   setLanguageTo(value);
+                  setFromText("");
+                  setToText("");
                 }}
                 defaultValue={languages[1]}
               />
