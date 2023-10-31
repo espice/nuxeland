@@ -6,13 +6,11 @@ import Select from "react-select";
 import Selector from "@/components/Select";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
-
 import { languages } from "@/utils/languages";
-import ts from "typescript";
 
 export default function TranslatePage() {
-  const [languageFrom, setLanguageFrom] = useState<any>(null);
-  const [languageTo, setLanguageTo] = useState<any>(null);
+  const [languageFrom, setLanguageFrom] = useState<any>(languages[3]);
+  const [languageTo, setLanguageTo] = useState<any>(languages[0]);
   const [fromText, setFromText] = useState("");
   const [toText, setToText] = useState("");
   const [toTranslate, setToTranslate] = useState("");
@@ -20,7 +18,21 @@ export default function TranslatePage() {
   const fromTextRef = useRef<HTMLTextAreaElement>(null);
   const fromLangRef = useRef<any>(null);
   const toLangRef = useRef<any>(null);
-  const synth = window.speechSynthesis
+
+
+  const fromRef = useRef(languageFrom);
+  const toRef = useRef(languageTo);
+
+
+  const setTo = (data: any) => {
+    toRef.current = data
+    setLanguageTo(data)
+  }
+
+  const setFrom = (data: any) => {
+    fromRef.current = data
+    setLanguageFrom(data)
+  }
 
   const speak = (text: string) => {
     const synth = window.speechSynthesis;
@@ -35,44 +47,39 @@ export default function TranslatePage() {
   }
 
   useEffect(() => {
-    //@ts-ignore
-    setLanguageFrom(languages[0]);
-
-    //@ts-ignore
-    setLanguageTo(languages[3]);
-  }, []);
-
-  useEffect(() => {
     let typingTimer: any; //timer identifier
     let doneTypingInterval = 1200; //time in ms (1.2 seconds)
-
+    const type = () => {
+      // setToTranslate("");
+      clearTimeout(typingTimer);
+      if (
+        fromTextRef.current?.value !== "" ||
+        fromTextRef.current?.value.trim() !== ""
+      ) {
+        typingTimer = setTimeout(() => {
+          console.log("timeout");
+          translate(fromTextRef.current!.value,);
+        }, doneTypingInterval);
+      } else {
+        setToTranslate("");
+      }
+    }
     if (!!fromTextRef.current) {
-      fromTextRef.current.addEventListener("keyup", () => {
-        // setToTranslate("");
-        clearTimeout(typingTimer);
-        if (
-          fromTextRef.current?.value !== "" ||
-          fromTextRef.current?.value.trim() !== ""
-        ) {
-          typingTimer = setTimeout(() => {
-            console.log("timeout");
-            translate(fromTextRef.current!.value);
-          }, doneTypingInterval);
-        } else {
-          setToTranslate("");
-        }
-      });
+      fromTextRef.current.addEventListener("keyup", type);
+      
+    }
+
+    return () => {
+      // @ts-ignore
+      fromTextRef.current.removeEventListener("keyup", type);
     }
   }, [fromTextRef.current]);
 
-  // useEffect(() => {
-  //   console.log("useeffect");
-  //   translate();
-  // }, [toTranslate]);
-
-  const translate = async (input: string) => {
+  const translate = async (input: string, ) => {
+    let  languageFrom = fromRef.current;
+    let languageTo  = toRef.current;
     console.log("translating");
-
+    console.log(languageFrom, languageTo, 'kyu')
     if (translating) {
       return;
     }
@@ -86,7 +93,7 @@ export default function TranslatePage() {
     setTranslating(true);
     setToText("");
 
-    console.log(languageFrom.value, languageTo.value);
+    console.log(languageFrom.value, "from", languageTo.value, "to");
 
     let res = await axios.post(
       "https://translate.terraprint.co/translate",
@@ -114,12 +121,13 @@ export default function TranslatePage() {
     if (!languageFrom || !languageTo) return;
     console.log(languageFrom, languageTo, "hello");
     if (languageFrom === languageTo) {
+      console.log('equal');
       let arrWithoutFrom = languages.filter(
         (lang) => lang.value !== languageFrom.value
       );
-
       setLanguageTo(arrWithoutFrom[0]);
     }
+    console.log(languageFrom, languageTo, "helloooo");
   }, [languageFrom, languageTo]);
 
   if (languageFrom && languageTo)
@@ -136,7 +144,7 @@ export default function TranslatePage() {
                 options={languages}
                 value={languageFrom}
                 setValue={(value: any) => {
-                  setLanguageFrom(value);
+                  setFrom(value);
                   setFromText("");
                   setToText("");
                 }}
@@ -147,6 +155,7 @@ export default function TranslatePage() {
                 className={styles.yash__container__switcher}
                 onClick={() => {
                   let temp = languageFrom;
+                  console.log(languageFrom, 'jai hanuman');
                   setLanguageFrom(languageTo);
                   setLanguageTo(temp);
                   setFromText("");
@@ -202,7 +211,8 @@ export default function TranslatePage() {
                 value={languageTo}
                 ref={toLangRef}
                 setValue={(value: any) => {
-                  setLanguageTo(value);
+                  console.log(value, 'bhai sahab')
+                  setTo(value);
                   setFromText("");
                   setToText("");
                 }}

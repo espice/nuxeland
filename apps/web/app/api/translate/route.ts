@@ -22,6 +22,7 @@ export async function POST(request: any) {
   return NextResponse.json(
     {
       success: true,
+      // @ts-ignore
       data: translatedText,
     },
     {
