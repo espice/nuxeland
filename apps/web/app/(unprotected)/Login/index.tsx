@@ -1,15 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./index.module.scss";
 
 const Login = () => {
     const [stage, setStage] = useState(1);
-    
+    const loginRef = useRef<HTMLInputElement>(null);
+    const [height, setHeight] = useState('');
+
+    useEffect(() => {
+        setHeight(`${loginRef?.current?.clientHeight}px`) // @ts-ignore
+    }, [])
+    console.log(height);
+
     return (
         <div className={styles.container}>
             <img src="/intro.png" className={styles.container__image} />
-            <img src="/currency.png" className={styles.containerhack__image} style={stage >= 2 ? {transform: 'translate(-100%)'} : {}} />
+            <img src="/currency.png" className={styles.containerhack__image} style={stage >= 2 ? {transform: 'translate(-100%)', } : {}} />
             <img src="/intro.png" className={styles.containerhack__image} style={stage >= 3 ? {transform: 'translate(-100%)'} : {}} />
             <div className={styles.container__login}>
                 <div className={styles.container__login__dots}>
@@ -17,7 +24,7 @@ const Login = () => {
                     <div className={styles.container__login__dots__dot} style={stage == 2 ? {width: '32px', borderRadius: '50px', backgroundColor: '#5BBB5F'} : {}}></div>
                     <div className={styles.container__login__dots__dot} style={stage == 3 ? {width: '32px', borderRadius: '50px', backgroundColor: '#348CB4'} : {}}></div>
                 </div>
-                <div style={{minHeight: 'calc(100vh - 250px)', display: 'flex', flexFlow: 'column'}}>
+                <div style={{minHeight: 'calc(100vh - 250px)', display: 'flex', flexFlow: 'column'}} ref={loginRef}>
                 <h1 className={styles.container__login__heading}>Welcome to nuxEland!</h1>
                 <span className={styles.container__login__what}>WHAT IS NUXELAND?</span>
                 <span className={styles.container__login__desc}>
@@ -56,7 +63,7 @@ const Login = () => {
                     </svg>
                 </button>
                 </div>
-                <div className={styles.containerhack__div} style={stage >= 2 ? {transform: 'translate(-100vw)'} : {}}>
+                <div className={styles.containerhack__div} style={stage >= 2 ? {transform: 'translate(-100vw)', height: height } : { height: height}}>
                 <h1 className={styles.container__login__heading} style={{color: '#5BBB5F'}}>Currency</h1>
                 <span className={styles.container__login__what}>NUXECOINS</span>
                 <span className={styles.container__login__desc}>
@@ -99,7 +106,7 @@ const Login = () => {
                     </svg>
                 </button>
                 </div>
-                <div className={styles.containerhack__div} style={stage >= 3 ? {transform: 'translate(-100vw)'} : {}}>
+                <div className={styles.containerhack__div} style={stage >= 3 ? {transform: 'translate(-100vw)', height: height} : { height: height}}>
                 <h1 className={styles.container__login__heading} style={{color: '#348CB4'}}>Translate</h1>
                 <span className={styles.container__login__what}>TRANSLATE DEEZ NUTS</span>
                 <span className={styles.container__login__desc}>

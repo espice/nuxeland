@@ -100,7 +100,7 @@
         background-color: white;
         transition: 0.3s cubic-bezier(0.76, 0, 0.24, 1);
         top: 0px;
-        height: calc(100vh - 250px);
+        min-height: calc(100vh - 250px);
         display: flex;
         flex-flow: column;
         left: 100vw;
