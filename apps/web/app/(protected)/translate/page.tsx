@@ -70,8 +70,7 @@ export default function TranslatePage() {
     }
 
     return () => {
-      // @ts-ignore
-      fromTextRef.current.removeEventListener("keyup", type);
+      fromTextRef.current?.removeEventListener("keyup", type);
     }
   }, [fromTextRef.current]);
 
