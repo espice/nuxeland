@@ -155,8 +155,8 @@ export default function TranslatePage() {
                 onClick={() => {
                   let temp = languageFrom;
                   console.log(languageFrom, 'jai hanuman');
-                  setLanguageFrom(languageTo);
-                  setLanguageTo(temp);
+                  setFrom(languageTo);
+                  setTo(temp);
                   setFromText("");
                   setToText("");
                 }}
