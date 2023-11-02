@@ -2,49 +2,120 @@
 
 import PageStyles from "@/styles/shared/page/index.module.scss";
 import styles from "./index.module.scss";
-import Select from "react-select";
+import MicIcon from "@/public/mic.svg";
+import StopIcon from "@/public/stop.svg";
 import Selector from "@/components/Select";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { languages } from "@/utils/languages";
 
 export default function TranslatePage() {
-  const [languageFrom, setLanguageFrom] = useState<any>(languages[3]);
-  const [languageTo, setLanguageTo] = useState<any>(languages[0]);
+  const [languageFrom, setLanguageFrom] = useState<any>(languages[0]);
+  const [languageTo, setLanguageTo] = useState<any>(languages[3]);
   const [fromText, setFromText] = useState("");
   const [toText, setToText] = useState("");
   const [toTranslate, setToTranslate] = useState("");
+  const [synth, setSynth] = useState<SpeechSynthesis>();
   const [translating, setTranslating] = useState(false);
+  const [listening, setListening] = useState(false);
+  const [speechRecog, setSpeechRecog] = useState<any>();
   const fromTextRef = useRef<HTMLTextAreaElement>(null);
   const fromLangRef = useRef<any>(null);
   const toLangRef = useRef<any>(null);
 
-
   const fromRef = useRef(languageFrom);
   const toRef = useRef(languageTo);
 
-
   const setTo = (data: any) => {
-    toRef.current = data
-    setLanguageTo(data)
-  }
+    toRef.current = data;
+    setLanguageTo(data);
+  };
 
   const setFrom = (data: any) => {
-    fromRef.current = data
-    setLanguageFrom(data)
-  }
+    fromRef.current = data;
+    setLanguageFrom(data);
+  };
 
-  const speak = (text: string) => {
-    const synth = window.speechSynthesis;
-    console.log('speaking')
-    if (!synth) {
-      console.log('nooooo')
+  useEffect(() => {
+    const SpeechRecognition =
+      // @ts-ignore
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    setSpeechRecog(recognition);
+  }, []);
+
+  useEffect(() => {
+    let speechTimer: any;
+    let speechTimeout = 4000;
+
+    let transcript = "";
+
+    const languages = {
+      en: "en-US",
+      de: "de-DE",
+      es: "es-ES",
+      fr: "fr-FR",
     };
-    const utterance = new SpeechSynthesisUtterance(text);
 
-    utterance.voice = synth.getVoices()[0];
+    if (listening && !!speechRecog) {
+      // @ts-ignore
+      speechRecog.lang = languages[languageFrom.value];
+      speechRecog.interimResults = true;
+      speechRecog.continuous = true;
+      speechRecog.maxAlternatives = 1;
+
+      speechRecog.onresult = (event: any) => {
+        setFromText(event.results[0][0].transcript);
+        transcript = event.results[0][0].transcript;
+        clearTimeout(speechTimer);
+        speechTimer = setTimeout(() => {
+          setListening(false);
+        }, speechTimeout);
+      };
+
+      speechRecog.onspeechend = (event: any) => {
+        translate(transcript);
+      };
+
+      speechRecog.start();
+    } else if (!!speechRecog) {
+      speechRecog.stop();
+    }
+  }, [listening]);
+
+  useEffect(() => {
+    if (window) {
+      setSynth(window.speechSynthesis);
+    }
+  }, []);
+
+  const speak = (text: string, lang: "en" | "es" | "de" | "fr") => {
+    const languages = {
+      en: "en-US",
+      de: "de-DE",
+      es: "es-ES",
+      fr: "fr-FR",
+    };
+
+    const language = languages[lang];
+
+    console.log("speaking");
+    if (!synth) {
+      console.log("nooooo");
+      return;
+    }
+    const utterance = new SpeechSynthesisUtterance(text);
+    let voice = synth.getVoices()[0];
+
+    synth.getVoices().forEach((v) => {
+      if (v.lang === language) voice = v;
+    });
+
+    utterance.voice = voice;
+
+    console.log(synth.getVoices());
     synth.speak(utterance);
-  }
+  };
 
   useEffect(() => {
     let typingTimer: any; //timer identifier
@@ -58,27 +129,27 @@ export default function TranslatePage() {
       ) {
         typingTimer = setTimeout(() => {
           console.log("timeout");
-          translate(fromTextRef.current!.value,);
+          translate(fromTextRef.current!.value);
         }, doneTypingInterval);
       } else {
         setToTranslate("");
       }
-    }
+    };
     if (!!fromTextRef.current) {
       fromTextRef.current.addEventListener("keyup", type);
-      
     }
 
     return () => {
       fromTextRef.current?.removeEventListener("keyup", type);
-    }
+    };
   }, [fromTextRef.current]);
 
-  const translate = async (input: string, ) => {
-    let  languageFrom = fromRef.current;
-    let languageTo  = toRef.current;
+  const translate = async (input: string) => {
+    let languageFrom = fromRef.current;
+    let languageTo = toRef.current;
     console.log("translating");
-    console.log(languageFrom, languageTo, 'kyu')
+    console.log(languageFrom, languageTo, "kyu");
+    console.log(input, translating);
     if (translating) {
       return;
     }
@@ -120,7 +191,7 @@ export default function TranslatePage() {
     if (!languageFrom || !languageTo) return;
     console.log(languageFrom, languageTo, "hello");
     if (languageFrom === languageTo) {
-      console.log('equal');
+      console.log("equal");
       let arrWithoutFrom = languages.filter(
         (lang) => lang.value !== languageFrom.value
       );
@@ -154,7 +225,7 @@ export default function TranslatePage() {
                 className={styles.yash__container__switcher}
                 onClick={() => {
                   let temp = languageFrom;
-                  console.log(languageFrom, 'jai hanuman');
+                  console.log(languageFrom, "jai hanuman");
                   setFrom(languageTo);
                   setTo(temp);
                   setFromText("");
@@ -210,7 +281,7 @@ export default function TranslatePage() {
                 value={languageTo}
                 ref={toLangRef}
                 setValue={(value: any) => {
-                  console.log(value, 'bhai sahab')
+                  console.log(value, "bhai sahab");
                   setTo(value);
                   setFromText("");
                   setToText("");
@@ -272,7 +343,12 @@ export default function TranslatePage() {
                   </svg>
                 </div>
 
-                <div className={styles.languageContainer__icons__icon} onClick={() => {speak(fromText)}}>
+                <div
+                  className={styles.languageContainer__icons__icon}
+                  onClick={() => {
+                    speak(fromText, languageFrom.value);
+                  }}
+                >
                   <svg
                     width="24"
                     height="24"
@@ -360,7 +436,9 @@ export default function TranslatePage() {
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    onClick={() => {speak(toText)}}
+                    onClick={() => {
+                      speak(toText, languageTo.value);
+                    }}
                   >
                     <g clip-path="url(#clip0_81_7)">
                       <path
@@ -389,6 +467,14 @@ export default function TranslatePage() {
             </div>
           </div>
         </div>
+        <button
+          className={styles.mic_button}
+          onClick={() => {
+            setListening(!listening);
+          }}
+        >
+          {listening ? <StopIcon /> : <MicIcon />}
+        </button>
       </div>
     );
 }
