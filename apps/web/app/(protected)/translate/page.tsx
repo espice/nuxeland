@@ -62,12 +62,11 @@ export default function TranslatePage() {
       speechRecog.lang = languages[languageFrom.value];
       speechRecog.interimResults = true;
       speechRecog.continuous = true;
-      speechRecog.maxAlternatives = 1;
+      speechRecog.maxAlternatives = 0;
 
       speechRecog.onresult = (event: any) => {
-        console.log(event.results);
-        setFromText(event.results[0][0].transcript);
-        transcript = event.results[0][0].transcript;
+        setFromText(event.results[event.results.length - 1][0].transcript);
+        transcript = event.results[event.results.length - 1][0].transcript;
         clearTimeout(speechTimer);
         speechTimer = setTimeout(() => {
           setListening(false);
@@ -77,6 +76,7 @@ export default function TranslatePage() {
       speechRecog.onspeechend = (event: any) => {
         console.log("speech end");
         translate(transcript);
+        setTranslating(false);
       };
 
       speechRecog.start();
