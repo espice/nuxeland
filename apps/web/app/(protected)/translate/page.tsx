@@ -75,6 +75,7 @@ export default function TranslatePage() {
       };
 
       speechRecog.onspeechend = (event: any) => {
+        console.log("speech end");
         translate(transcript);
       };
 
