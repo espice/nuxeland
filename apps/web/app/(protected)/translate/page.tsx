@@ -65,6 +65,7 @@ export default function TranslatePage() {
       speechRecog.maxAlternatives = 1;
 
       speechRecog.onresult = (event: any) => {
+        console.log(event.results);
         setFromText(event.results[0][0].transcript);
         transcript = event.results[0][0].transcript;
         clearTimeout(speechTimer);
