@@ -1,12 +1,17 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { regions } from "@/utils/regions";
 import styles from "./Map.module.scss";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import useOnClickOutside, { Popup } from "@/components/Popup";
+import { io } from "socket.io-client";
+import { axios } from "@/utils/axios";
 
-const Map = () => {
+const Map = ({total}:{total: number}) => {
+  // @ts-ignore
+
+  console.log(process.env.NEXT_PUBLIC_API_URL);
   console.log(regions);
   const [region, setRegion] = useState(Object);
   const [regionPopupOpen, setRegionPopupOpen] = useState(false);
@@ -293,6 +298,7 @@ const Map = () => {
           </svg>
         </button>
       </Popup>
+      <span>total number of users are: {total}</span>
     </div>
   );
 };

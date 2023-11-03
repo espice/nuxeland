@@ -7,6 +7,7 @@ import { getContext } from "./graphql/context";
 import { schema } from "./graphql/schema";
 import { env } from "./utils/env";
 import { createYoga } from "graphql-yoga";
+import fastifySocketIO from "./fastifysocketio";
 import {
   serializerCompiler,
   validatorCompiler,
@@ -14,6 +15,8 @@ import {
 } from "fastify-type-provider-zod";
 import { fileRouter } from "./rest/fileRouter";
 import { join } from "path";
+import { Server } from "socket.io";
+const  http = require("http");
 
 const main = async () => {
   const app = fastify({ logger: true }).withTypeProvider<ZodTypeProvider>();
@@ -30,6 +33,13 @@ const main = async () => {
   await app.register(cookie, {
     hook: "onRequest",
   });
+
+  app.register(fastifySocketIO, {
+    cors: {
+      origin: "http://localhost:5000",
+      methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    },
+  })
 
   console.log("registering routes");
   await app.register(fileRouter, {
@@ -54,6 +64,38 @@ const main = async () => {
       return reply;
     },
   });
+
+  app.ready((err) => {
+    if (err) throw err;
+    // @ts-ignore
+    app.io.on("connection", (socket) => {
+      liveusers += 1
+      // @ts-ignore
+      socket.emit("total", {
+        // @ts-ignore
+        total: liveusers
+      })
+  
+      socket.on("disconnect", () => {
+        liveusers -= 1
+        console.log('disconnecting')
+        // @ts-ignore
+        socket.emit("total", {
+          // @ts-ignore
+          total: liveusers
+        })
+      })
+    })
+  })
+
+  let liveusers = 0
+
+  app.get('/total', (req, res) => {
+    // @ts-ignore
+    console.log(app.io.engine.clientsCount)
+    // @ts-ignore
+    return res.send(liveusers);
+  })
 
   const host = env("HOST", "127.0.0.1");
   const port = parseInt(env("PORT", "8000"));
