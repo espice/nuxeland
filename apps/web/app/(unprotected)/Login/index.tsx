@@ -209,7 +209,7 @@ const Login = () => {
           <span className={styles.container__login__desc}>
             Each region in nuxEland has its own language. For example, if you
             come across a gentleman shouting gibberish in Rusticia, chances are
-            he's probably speaking Semwalese.
+            he is probably speaking Semwalese.
             <br />
             <div style={{ height: "12px" }}></div>
             Our app allows you to translate between these region-specific
