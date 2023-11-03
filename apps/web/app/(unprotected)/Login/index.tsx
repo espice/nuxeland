@@ -147,8 +147,9 @@ const Login = () => {
             nuxEland uses its very own currency - nuxECoins.
             <br />
             <div style={{ height: "12px" }}></div>
-            These rare tokens, previously unobtainable on Earth, can now be
-            exchanged for USD or any other currency through the nuxEland app.
+            These rare tokens, which were previously unobtainable on Earth, can
+            now be exchanged for USD or any other currency through the nuxEland
+            app.
             <br />
             <div style={{ height: "12px" }}></div>
             No more cleaning giants’ toes to earn some nuxEcoins!
