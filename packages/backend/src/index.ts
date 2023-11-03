@@ -36,7 +36,7 @@ const main = async () => {
 
   app.register(fastifySocketIO, {
     cors: {
-      origin: "http://localhost:5000",
+      origin: "http://localhost:5000" || "https://nuxeland.hop.sh",
       methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     },
   });
