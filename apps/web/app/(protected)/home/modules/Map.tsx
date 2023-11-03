@@ -456,8 +456,14 @@ const Map = ({ total }: { total: number }) => {
             </defs>
           </svg>
         </div>
-        {total} {total == 1 ? "human" : "humans"} {total == 1 ? "is" : "are"}{" "}
-        currently exploring nuxEland
+        {total - 1 <= 0 ? (
+          <>No other humans are currently exploring nuxEland!</>
+        ) : (
+          <>
+            {total - 1} other {total - 1 == 1 ? "human" : "humans"}{" "}
+            {total - 1 == 1 ? "is" : "are"} currently exploring nuxEland!
+          </>
+        )}
       </div>
     </div>
   );
