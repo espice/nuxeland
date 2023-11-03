@@ -44,12 +44,17 @@ builder.queryFields((t) => ({
   me: t.withAuth({ loggedIn: true }).prismaField({
     type: "User",
     resolve: async (query, _root, _args, ctx) => {
-      return await prisma.user.findUniqueOrThrow({
-        where: {
-          id: ctx.userId,
-        },
-        ...query,
-      });
+      try {
+        return await prisma.user.findUniqueOrThrow({
+          where: {
+            id: ctx.userId,
+          },
+          ...query,
+        });
+      } catch (e) {
+        console.log(e);
+        throw e;
+      }
     },
   }),
   userById: t.withAuth({ loggedIn: true }).prismaField({

@@ -34,16 +34,6 @@ const main = async () => {
     hook: "onRequest",
   });
 
-  app.register(fastifySocketIO, {
-    cors: {
-      origin: [
-        env("CORS_ORIGIN", env("FRONTEND_URL")),
-        "http://127.0.0.1:5000",
-      ],
-      methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    },
-  });
-
   console.log("registering routes");
   await app.register(fileRouter, {
     dir: join(__dirname, "rest", "routes"),
@@ -68,6 +58,17 @@ const main = async () => {
     },
   });
   let liveusers = <any>[];
+
+  app.register(fastifySocketIO, {
+    cors: {
+      origin: [
+        env("CORS_ORIGIN", env("FRONTEND_URL")),
+        "http://127.0.0.1:5000",
+      ],
+      methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    },
+  });
+
   app.ready((err) => {
     if (err) throw err;
     // @ts-ignore
