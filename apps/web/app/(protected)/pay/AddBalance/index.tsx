@@ -40,11 +40,21 @@ export default function AddBalance() {
             <StripePayment clientSecret={stripeClientSecret} />
           ) : (
             <>
-              <p className="text-[#3F3F3F] font-bold text-[22px]">
+              <p
+                style={{
+                  letterSpacing: "-0.5px",
+                }}
+                className="text-[#3F3F3F] font-bold text-[24px]"
+              >
                 Add Balance
               </p>
-              <p className="font-[600] text-[#5B5B5B] text-[17px] leading-[-30%] tracking-[-4.5%]">
-                Add Balance to your account to be able to pay in nuxEcoins
+              <p
+                style={{
+                  letterSpacing: "-0.5px",
+                }}
+                className="font-[600] text-[#5B5B5B] text-[17px] leading-[-30%] tracking-[-4.5%]"
+              >
+                Top up your account to be able to pay in nuxEcoins.
               </p>
               <form
                 onSubmit={async (e) => {
@@ -70,7 +80,7 @@ export default function AddBalance() {
                     value={amount}
                     onChange={(e) => setAmount(parseFloat(e.target.value))}
                     type="number"
-                    className="p-[6px] text-[#313131] font-[16px] font-[500] h-[58px] w-full border-[2px] border-[#B8B8B8] rounded-[8px] mb-[12px] mt-[4px]"
+                    className="p-[12px] text-[#313131] font-[16px] font-[500] h-[58px] w-full border-[2px] border-[#B8B8B8] rounded-[8px] mb-[12px] mt-[4px]"
                     required
                     min={1}
                   />

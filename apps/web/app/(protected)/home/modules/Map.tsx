@@ -8,7 +8,7 @@ import useOnClickOutside, { Popup } from "@/components/Popup";
 import { io } from "socket.io-client";
 import { axios } from "@/utils/axios";
 
-const Map = ({total}:{total: number}) => {
+const Map = ({ total }: { total: number }) => {
   // @ts-ignore
 
   console.log(process.env.NEXT_PUBLIC_API_URL);
@@ -25,7 +25,7 @@ const Map = ({total}:{total: number}) => {
       <div className={styles.map}>
         <div className={styles.map__image}></div>
         <span className={styles.map__text}>
-          Expand to know more about this region
+          Expand to know more about this region.
         </span>
         <div
           className={styles.map__expand}
@@ -96,76 +96,195 @@ const Map = ({total}:{total: number}) => {
                 style={{ width: "100vw", height: "auto" }}
               ></img>
               <div
-                style={{ position: "absolute", top: "13%", left: "10%", color: regions[0].primary, }}
+                style={{
+                  position: "absolute",
+                  top: "13%",
+                  left: "10%",
+                  color: regions[0].primary,
+                }}
                 onClick={() => {
                   setRegion(regions[0]), setRegionPopupOpen(true);
                 }}
                 className={styles.link}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin-filled" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-map-pin-filled"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
+                  <path
+                    d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z"
+                    stroke-width="0"
+                    fill="currentColor"
+                  ></path>
                 </svg>
               </div>
               <div
-                style={{ position: "absolute", top: "30%", left: "26%", color: regions[1].primary, }}
+                style={{
+                  position: "absolute",
+                  top: "30%",
+                  left: "26%",
+                  color: regions[1].primary,
+                }}
                 onClick={() => {
                   setRegion(regions[1]), setRegionPopupOpen(true);
                 }}
                 className={styles.link}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin-filled" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-map-pin-filled"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
+                  <path
+                    d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z"
+                    stroke-width="0"
+                    fill="currentColor"
+                  ></path>
                 </svg>
               </div>
               <div
-                style={{ position: "absolute", top: "5%", left: "48%", color: regions[2].primary,}}
+                style={{
+                  position: "absolute",
+                  top: "5%",
+                  left: "48%",
+                  color: regions[2].primary,
+                }}
                 onClick={() => {
                   setRegion(regions[2]), setRegionPopupOpen(true);
                 }}
                 className={styles.link}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin-filled" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-map-pin-filled"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
+                  <path
+                    d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z"
+                    stroke-width="0"
+                    fill="currentColor"
+                  ></path>
                 </svg>
               </div>
               <div
-                style={{ position: "absolute", top: "20%", left: "83%", color: regions[3].primary, }}
-        
+                style={{
+                  position: "absolute",
+                  top: "20%",
+                  left: "83%",
+                  color: regions[3].primary,
+                }}
                 onClick={() => {
                   setRegion(regions[3]), setRegionPopupOpen(true);
                 }}
                 className={styles.link}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin-filled" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-map-pin-filled"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
+                  <path
+                    d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z"
+                    stroke-width="0"
+                    fill="currentColor"
+                  ></path>
                 </svg>
               </div>
               <div
-                style={{ position: "absolute", top: "48%", left: "50%", color: regions[4].primary,}}
+                style={{
+                  position: "absolute",
+                  top: "48%",
+                  left: "50%",
+                  color: regions[4].primary,
+                }}
                 onClick={() => {
                   setRegion(regions[4]), setRegionPopupOpen(true);
                 }}
                 className={styles.link}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin-filled" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-map-pin-filled"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
+                  <path
+                    d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z"
+                    stroke-width="0"
+                    fill="currentColor"
+                  ></path>
                 </svg>
               </div>
               <div
-                style={{ position: "absolute", top: "53%", left: "22%", color: regions[5].primary,}}
+                style={{
+                  position: "absolute",
+                  top: "53%",
+                  left: "22%",
+                  color: regions[5].primary,
+                }}
                 onClick={() => {
                   setRegion(regions[5]), setRegionPopupOpen(true);
                 }}
                 className={styles.link}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin-filled" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-map-pin-filled"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
+                  <path
+                    d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z"
+                    stroke-width="0"
+                    fill="currentColor"
+                  ></path>
                 </svg>
               </div>
             </TransformComponent>
@@ -298,7 +417,48 @@ const Map = ({total}:{total: number}) => {
           </svg>
         </button>
       </Popup>
-      <span>total number of users are: {total}</span>
+      <div className={styles.uncle_chips}>
+        <div>
+          <svg
+            width="19"
+            height="19"
+            viewBox="0 0 19 19"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_27_27)">
+              <path
+                d="M2.375 9.5C2.375 10.4357 2.55929 11.3622 2.91736 12.2266C3.27542 13.0911 3.80025 13.8765 4.46186 14.5381C5.12348 15.1998 5.90894 15.7246 6.77338 16.0826C7.63783 16.4407 8.56433 16.625 9.5 16.625C10.4357 16.625 11.3622 16.4407 12.2266 16.0826C13.0911 15.7246 13.8765 15.1998 14.5381 14.5381C15.1998 13.8765 15.7246 13.0911 16.0826 12.2266C16.4407 11.3622 16.625 10.4357 16.625 9.5C16.625 7.61033 15.8743 5.79806 14.5381 4.46186C13.2019 3.12567 11.3897 2.375 9.5 2.375C7.61033 2.375 5.79806 3.12567 4.46186 4.46186C3.12567 5.79806 2.375 7.61033 2.375 9.5Z"
+                stroke="#4A4A4A"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M9.5 7.125H9.50905"
+                stroke="#4A4A4A"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M8.70834 9.5H9.50001V12.6667H10.2917"
+                stroke="#4A4A4A"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_27_27">
+                <rect width="19" height="19" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+        {total} {total == 1 ? "human" : "humans"} {total == 1 ? "is" : "are"}{" "}
+        currently exploring nuxEland
+      </div>
     </div>
   );
 };

@@ -24,9 +24,21 @@ export default function ShowQRButton() {
     >
       <QRCodeIcon size={30} />
       <Popup className="flex flex-col" popupState={showQRModal} ref={showQRRef}>
-        <p className="text-[#3F3F3F] font-bold text-[22px]">Your QR Code</p>
-        <p className="font-[600] text-[#5B5B5B] text-[17px] leading-[-30px] tracking-[-4.5%] text-[16px]">
-          Show this QR Code to others to receive payments
+        <p
+          style={{
+            letterSpacing: "-0.5px",
+          }}
+          className="text-[#3F3F3F] font-bold text-[24px]"
+        >
+          Your QR Code
+        </p>
+        <p
+          style={{
+            letterSpacing: "-0.5px",
+          }}
+          className="font-[600] text-[#5B5B5B] text-[17px] leading-[-30px] tracking-[-4.5%] text-[16px]"
+        >
+          Show this QR Code to others to receive payments.
         </p>
         <div className="mt-[40px] ml-auto mr-auto mb-[40px]">
           <QRCode value={user!.id} fgColor={"#3F3F3F"} />

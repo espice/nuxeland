@@ -17,22 +17,32 @@ export default function Dashboard() {
 
   const [total, setTotal] = useState(0);
   const [socket, setSocket] = useState<any>(null);
-  async function totall () {
-    const total = await axios.get('/total')
-    setTotal(total.data)
-
+  async function totall() {
+    const total = await axios.get("/total");
+    setTotal(total.data);
   }
   useEffect(() => {
-    totall()
+    //totall();
     // @ts-ignore
-    const socket = io(process.env.NEXT_PUBLIC_API_URL);
-    socket.on("total", (total: {total: number}) => {
-      setTotal(total.total)
-    })
-    setSocket(socket)
-    return () => {socket.off('total', ), socket.disconnect()}
-  }, [])
-  
+    const newSocket = io(process.env.NEXT_PUBLIC_API_URL);
+
+    setSocket(newSocket);
+
+    return () => {
+      console.log("disconnect");
+      newSocket.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("total", (data: any) => {
+        console.log(data);
+        setTotal(data.total);
+      });
+    }
+  }, [socket]);
+
   return (
     <>
       <div className={PageStyles.main}>

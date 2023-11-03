@@ -16,7 +16,7 @@ import {
 import { fileRouter } from "./rest/fileRouter";
 import { join } from "path";
 import { Server } from "socket.io";
-const  http = require("http");
+const http = require("http");
 
 const main = async () => {
   const app = fastify({ logger: true }).withTypeProvider<ZodTypeProvider>();
@@ -39,7 +39,7 @@ const main = async () => {
       origin: "http://localhost:5000",
       methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     },
-  })
+  });
 
   console.log("registering routes");
   await app.register(fileRouter, {
@@ -64,38 +64,38 @@ const main = async () => {
       return reply;
     },
   });
-
+  let liveusers = <any>[];
   app.ready((err) => {
     if (err) throw err;
     // @ts-ignore
     app.io.on("connection", (socket) => {
-      liveusers += 1
+      liveusers.push(socket.id);
+      console.log("connected", liveusers.length);
       // @ts-ignore
-      socket.emit("total", {
+      app.io.emit("total", {
         // @ts-ignore
-        total: liveusers
-      })
-  
+        total: liveusers.length,
+      });
+
       socket.on("disconnect", () => {
-        liveusers -= 1
-        console.log('disconnecting')
         // @ts-ignore
-        socket.emit("total", {
+        liveusers = liveusers.filter((user) => user !== socket.id);
+        console.log("disconnected", liveusers.length);
+        // @ts-ignore
+        app.io.emit("total", {
           // @ts-ignore
-          total: liveusers
-        })
-      })
-    })
-  })
+          total: liveusers.length,
+        });
+      });
+    });
+  });
 
-  let liveusers = 0
-
-  app.get('/total', (req, res) => {
+  app.get("/total", (req, res) => {
     // @ts-ignore
-    console.log(app.io.engine.clientsCount)
+    console.log(app.io.engine.clientsCount);
     // @ts-ignore
-    return res.send(liveusers);
-  })
+    return res.send();
+  });
 
   const host = env("HOST", "127.0.0.1");
   const port = parseInt(env("PORT", "8000"));

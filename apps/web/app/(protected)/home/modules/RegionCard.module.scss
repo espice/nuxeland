@@ -8,6 +8,7 @@
   cursor: pointer;
   transition: all 0.2s;
   border-radius: 8px;
+  transform: scale(1);
 
   &__name {
     font-size: 16px;
@@ -29,19 +30,20 @@
   }
 }
 
-
 .popup {
   &__heading {
-      font-size: 22px;
-      font-weight: bold;
+    font-size: 22px;
+    font-weight: bold;
+
+    letter-spacing: -0.75px;
   }
 
   &__desc {
     font-weight: 600;
     font-size: 17px;
     margin-top: 5px;
-    color: #5B5B5B;
-    letter-spacing: -4.5%;
+    color: #5b5b5b;
+    letter-spacing: -0.75px;
     line-height: -30%;
   }
 
@@ -67,6 +69,7 @@
     }
   }
   &__button {
+    letter-spacing: -0.75px;
     display: flex;
     position: relative;
     height: 58px;
@@ -89,20 +92,23 @@
     gap: 10px;
     &__heading {
       font-size: 20px;
+
+      letter-spacing: -0.75px;
       font-weight: bold;
     }
-    
+
     display: flex;
   }
 
   &__tips {
     list-style-type: disc;
-    color: #3F3F3F;
+    color: #3f3f3f;
     margin-left: 6px;
     font-weight: 500;
     font-size: 17px;
-    margin-top:  12px;
+
+    letter-spacing: -0.75px;
+    margin-top: 12px;
     list-style-position: inside;
   }
-
 }
