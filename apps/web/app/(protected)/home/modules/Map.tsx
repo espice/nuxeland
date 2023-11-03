@@ -16,6 +16,7 @@ const Map = ({ total }: { total: number }) => {
   const [region, setRegion] = useState(Object);
   const [regionPopupOpen, setRegionPopupOpen] = useState(false);
   const regionPopupRef = useRef(null);
+  
   useOnClickOutside(regionPopupRef, () => {
     setRegionPopupOpen(false);
   });
@@ -287,6 +288,40 @@ const Map = ({ total }: { total: number }) => {
                   ></path>
                 </svg>
               </div>
+                {Array.from(Array(total).keys()).map((value) => {
+                  let x = Math.floor(Math.random() * (70 - 25) + 25)
+                  let y = Math.floor(Math.random() * (55 - 30) + 30)
+                    return (
+                      <div className={styles.person} style={{position: 'absolute', top: `${y}%`, left: `${x}%`}} >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-man" width="28" height="28" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M10 16v5"></path>
+                        <path d="M14 16v5"></path>
+                        <path d="M9 9h6l-1 7h-4z"></path>
+                        <path d="M5 11c1.333 -1.333 2.667 -2 4 -2"></path>
+                        <path d="M19 11c-1.333 -1.333 -2.667 -2 -4 -2"></path>
+                        <path d="M12 4m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                      </svg>
+                      </div>
+                    )
+                })}
+                {Array.from(Array(1).keys()).map((value) => {
+                  let x = Math.floor(Math.random() * (70 - 25) + 25)
+                  let y = Math.floor(Math.random() * (55 - 30) + 30)
+                    return (
+                      <div className={styles.person} style={{position: 'absolute', top: `${y}%`, left: `${x}%`, color: '#F00'}} >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-current-location" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+                        <path d="M12 12m-8 0a8 8 0 1 0 16 0a8 8 0 1 0 -16 0"></path>
+                        <path d="M12 2l0 2"></path>
+                        <path d="M12 20l0 2"></path>
+                        <path d="M20 12l2 0"></path>
+                        <path d="M2 12l2 0"></path>
+                      </svg>
+                      </div>
+                    )
+                })}
             </TransformComponent>
           </TransformWrapper>
         </div>
