@@ -36,7 +36,10 @@ const main = async () => {
 
   app.register(fastifySocketIO, {
     cors: {
-      origin: env("FRONTEND_URL"),
+      origin: [
+        env("CORS_ORIGIN", env("FRONTEND_URL")),
+        "http://127.0.0.1:5000",
+      ],
       methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     },
   });
