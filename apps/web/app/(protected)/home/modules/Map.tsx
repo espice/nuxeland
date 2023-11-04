@@ -288,7 +288,7 @@ const Map = ({ total }: { total: number }) => {
                   ></path>
                 </svg>
               </div>
-                {Array.from(Array(total).keys()).map((value) => {
+                {Array.from(Array(total - 1).keys()).map((value) => {
                   let x = Math.floor(Math.random() * (70 - 25) + 25)
                   let y = Math.floor(Math.random() * (55 - 30) + 30)
                     return (
