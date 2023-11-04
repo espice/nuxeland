@@ -16,6 +16,7 @@ const Map = ({ total }: { total: number }) => {
   const [region, setRegion] = useState(Object);
   const [regionPopupOpen, setRegionPopupOpen] = useState(false);
   const regionPopupRef = useRef(null);
+  
   useOnClickOutside(regionPopupRef, () => {
     setRegionPopupOpen(false);
   });
@@ -60,6 +61,10 @@ const Map = ({ total }: { total: number }) => {
             alignItems: "center",
             overflow: "hidden",
           }}
+          
+          onClick={() => {
+            setExpand(false);
+          }}
         >
           <svg
             style={{
@@ -81,9 +86,6 @@ const Map = ({ total }: { total: number }) => {
               fill-rule="evenodd"
               d="M11.782 4.032a.575.575 0 1 0-.813-.814L7.5 6.687L4.032 3.218a.575.575 0 0 0-.814.814L6.687 7.5l-3.469 3.468a.575.575 0 0 0 .814.814L7.5 8.313l3.469 3.469a.575.575 0 0 0 .813-.814L8.313 7.5l3.469-3.468Z"
               clip-rule="evenodd"
-              onClick={() => {
-                setExpand(false);
-              }}
             />
           </svg>
           <div className={styles.overlay}></div>
@@ -287,6 +289,40 @@ const Map = ({ total }: { total: number }) => {
                   ></path>
                 </svg>
               </div>
+                {Array.from(Array(total - 1).keys()).map((value) => {
+                  let x = Math.floor(Math.random() * (70 - 25) + 25)
+                  let y = Math.floor(Math.random() * (55 - 30) + 30)
+                    return (
+                      <div key={value} className={styles.person} style={{position: 'absolute', top: `${y}%`, left: `${x}%`}} >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-man" width="28" height="28" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M10 16v5"></path>
+                        <path d="M14 16v5"></path>
+                        <path d="M9 9h6l-1 7h-4z"></path>
+                        <path d="M5 11c1.333 -1.333 2.667 -2 4 -2"></path>
+                        <path d="M19 11c-1.333 -1.333 -2.667 -2 -4 -2"></path>
+                        <path d="M12 4m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                      </svg>
+                      </div>
+                    )
+                })}
+                {Array.from(Array(1).keys()).map((value) => {
+                  let x = Math.floor(Math.random() * (70 - 25) + 25)
+                  let y = Math.floor(Math.random() * (55 - 30) + 30)
+                    return (
+                      <div key={value} className={styles.person} style={{position: 'absolute', top: `${y}%`, left: `${x}%`, color: '#F00'}} >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-current-location" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+                        <path d="M12 12m-8 0a8 8 0 1 0 16 0a8 8 0 1 0 -16 0"></path>
+                        <path d="M12 2l0 2"></path>
+                        <path d="M12 20l0 2"></path>
+                        <path d="M20 12l2 0"></path>
+                        <path d="M2 12l2 0"></path>
+                      </svg>
+                      </div>
+                    )
+                })}
             </TransformComponent>
           </TransformWrapper>
         </div>
@@ -457,12 +493,16 @@ const Map = ({ total }: { total: number }) => {
           </svg>
         </div>
         {total - 1 <= 0 ? (
-          <>No other humans are currently exploring nuxEland!</>
+          <div style={{
+            fontSize:"13px"
+          }}>No other humans are currently exploring nuxEland!</div>
         ) : (
-          <>
+          <div style={{
+            fontSize:"14px"
+          }}>
             {total - 1} other {total - 1 == 1 ? "human" : "humans"}{" "}
             {total - 1 == 1 ? "is" : "are"} currently exploring nuxEland!
-          </>
+          </div>
         )}
       </div>
     </div>
