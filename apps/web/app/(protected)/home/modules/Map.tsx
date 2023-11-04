@@ -292,7 +292,7 @@ const Map = ({ total }: { total: number }) => {
                   let x = Math.floor(Math.random() * (70 - 25) + 25)
                   let y = Math.floor(Math.random() * (55 - 30) + 30)
                     return (
-                      <div className={styles.person} style={{position: 'absolute', top: `${y}%`, left: `${x}%`}} >
+                      <div key={value} className={styles.person} style={{position: 'absolute', top: `${y}%`, left: `${x}%`}} >
                       <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-man" width="28" height="28" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M10 16v5"></path>
@@ -309,7 +309,7 @@ const Map = ({ total }: { total: number }) => {
                   let x = Math.floor(Math.random() * (70 - 25) + 25)
                   let y = Math.floor(Math.random() * (55 - 30) + 30)
                     return (
-                      <div className={styles.person} style={{position: 'absolute', top: `${y}%`, left: `${x}%`, color: '#F00'}} >
+                      <div key={value} className={styles.person} style={{position: 'absolute', top: `${y}%`, left: `${x}%`, color: '#F00'}} >
                       <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-current-location" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
