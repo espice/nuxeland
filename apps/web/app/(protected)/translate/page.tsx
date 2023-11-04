@@ -394,7 +394,7 @@ export default function TranslatePage() {
                 className={styles.languageContainer__input}
                 placeholder={translating ? "Translating..." : "Translated text"}
                 disabled
-                value={toText}
+                value={translating ? "Translating..." : toText}
               ></textarea>
 
               <div className={styles.languageContainer__separator} />
