@@ -14,7 +14,7 @@
     "@andreasremdt/simple-translator": "^2.0.4",
     "@nuxeland/config": "workspace:*",
     "@stripe/react-stripe-js": "^2.3.1",
-    "@stripe/stripe-js": "^2.1.10",
+    "@stripe/stripe-js": "^2.1.11",
     "@types/node": "20.5.3",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
