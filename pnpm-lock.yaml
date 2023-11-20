@@ -251,14 +251,14 @@ importers:
         version: 3.57.0(@pothos/core@3.33.0)(@prisma/client@5.2.0)(graphql@16.8.0)(typescript@5.1.6)
       '@prisma/client':
         specifier: ^5.2.0
-        version: 5.2.0(prisma@5.2.0)
+        version: 5.2.0(prisma@5.6.0)
     devDependencies:
       '@nuxeland/config':
         specifier: workspace:*
         version: link:../config
       prisma:
-        specifier: ^5.2.0
-        version: 5.2.0
+        specifier: ^5.6.0
+        version: 5.6.0
       typescript:
         specifier: 5.1.6
         version: 5.1.6
@@ -2182,7 +2182,7 @@ packages:
       typescript: '>=4.7.2'
     dependencies:
       '@pothos/core': 3.33.0(graphql@16.8.0)
-      '@prisma/client': 5.2.0(prisma@5.2.0)
+      '@prisma/client': 5.2.0(prisma@5.6.0)
       '@prisma/generator-helper': 5.2.0
       graphql: 16.8.0
       typescript: 5.1.6
@@ -2200,7 +2200,7 @@ packages:
       graphql: 16.8.0
     dev: false
 
-  /@prisma/client@5.2.0(prisma@5.2.0):
+  /@prisma/client@5.2.0(prisma@5.6.0):
     resolution: {integrity: sha512-AiTjJwR4J5Rh6Z/9ZKrBBLel3/5DzUNntMohOy7yObVnVoTNVFi2kvpLZlFuKO50d7yDspOtW6XBpiAd0BVXbQ==}
     engines: {node: '>=16.13'}
     requiresBuild: true
@@ -2211,7 +2211,7 @@ packages:
         optional: true
     dependencies:
       '@prisma/engines-version': 5.2.0-25.2804dc98259d2ea960602aca6b8e7fdc03c1758f
-      prisma: 5.2.0
+      prisma: 5.6.0
     dev: false
 
   /@prisma/debug@5.2.0:
@@ -2228,8 +2228,8 @@ packages:
     resolution: {integrity: sha512-jsnKT5JIDIE01lAeCj2ghY9IwxkedhKNvxQeoyLs6dr4ZXynetD0vTy7u6wMJt8vVPv8I5DPy/I4CFaoXAgbtg==}
     dev: false
 
-  /@prisma/engines@5.2.0:
-    resolution: {integrity: sha512-dT7FOLUCdZmq+AunLqB1Iz+ZH/IIS1Fz2THmKZQ6aFONrQD/BQ5ecJ7g2wGS2OgyUFf4OaLam6/bxmgdOBDqig==}
+  /@prisma/engines@5.6.0:
+    resolution: {integrity: sha512-Mt2q+GNJpU2vFn6kif24oRSBQv1KOkYaterQsi0k2/lA+dLvhRX6Lm26gon6PYHwUM8/h8KRgXIUMU0PCLB6bw==}
     requiresBuild: true
 
   /@prisma/generator-helper@5.2.0:
@@ -6993,13 +6993,13 @@ packages:
       js-beautify: 1.14.9
     dev: false
 
-  /prisma@5.2.0:
-    resolution: {integrity: sha512-FfFlpjVCkZwrqxDnP4smlNYSH1so+CbfjgdpioFzGGqlQAEm6VHAYSzV7jJgC3ebtY9dNOhDMS2+4/1DDSM7bQ==}
+  /prisma@5.6.0:
+    resolution: {integrity: sha512-EEaccku4ZGshdr2cthYHhf7iyvCcXqwJDvnoQRAJg5ge2Tzpv0e2BaMCp+CbbDUwoVTzwgOap9Zp+d4jFa2O9A==}
     engines: {node: '>=16.13'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@prisma/engines': 5.2.0
+      '@prisma/engines': 5.6.0
 
   /process-warning@2.2.0:
     resolution: {integrity: sha512-/1WZ8+VQjR6avWOgHeEPd7SDQmFQ1B5mC1eRXsCm5TarlNmx/wCsa5GEaxGm05BORRtyG/Ex/3xq3TuRvq57qg==}
